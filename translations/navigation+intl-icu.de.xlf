@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="Z7aWRoY" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Dashboard</target>
+      </trans-unit>
+      <trans-unit id="mxH2twf" resname="Monthly">
+        <source>Monthly</source>
+        <target>Monatsübersicht</target>
+      </trans-unit>
+      <trans-unit id="xBfLiOP" resname="Transfers">
+        <source>Transfers</source>
+        <target>Überweisungen</target>
+      </trans-unit>
+      <trans-unit id="2ZRjNzS" resname="Subaccount">
+        <source>Subaccount</source>
+        <target>Immobilien</target>
+      </trans-unit>
+      <trans-unit id="h9PKyNA" resname="Last 6 months">
+        <source>Last 6 months</source>
+        <target>Letztes halbes Jahr</target>
+      </trans-unit>
+      <trans-unit id="yCTNBL0" resname="Full year">
+        <source>Full year</source>
+        <target>Jahresübersicht</target>
+      </trans-unit>
+      <trans-unit id="PluQrgU" resname="Chart">
+        <source>Chart</source>
+        <target>Chart</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories">
+        <source>Categories</source>
+        <target>Kategorien</target>
+      </trans-unit>
+      <trans-unit id="sYZxSkE" resname="Assignment Rules">
+        <source>Assignment Rules</source>
+        <target>Regeln</target>
+      </trans-unit>
+      <trans-unit id="UX9kez6" resname="Bank Accounts">
+        <source>Bank Accounts</source>
+        <target>Bankzugänge</target>
+      </trans-unit>
+      <trans-unit id="yRDUdNz" resname="General">
+        <source>General</source>
+        <target>Grundeinstellungen</target>
+      </trans-unit>
+      <trans-unit id="dKiDoDe" resname="Settings">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

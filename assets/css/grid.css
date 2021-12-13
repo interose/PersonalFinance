@@ -1,0 +1,51 @@
+/* amount column styling */
+.positiv {
+    color: #449d44;
+    font-weight: bold;
+}
+.negativ {
+    color: #c9302c;
+    font-weight: bold;
+}
+
+/* style the monthly grid toolbar buttons */
+.button-filter-small::before, .button-filter-medium::before, .button-filter-large::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f0b0";
+    color: #212529;
+    font-size: 12px;
+}
+.button-filter-clear::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f2ed";
+    color: #212529;
+    font-size: 12px;
+}
+
+/* style splitted transfer rows different than the others */
+.row-split .x-grid-cell {
+    background-color: #d1ecf1 !important;
+    color: #0c5460;
+}
+
+/* boolean type column styling */
+.check-column-green {
+    color: #218838;
+}
+
+/* styling of action columns */
+.icon-margin {
+    margin-right: 8px;
+}
+div.x-action-col-icon {
+    color: #333;
+}
+.x-action-col-icon:hover {
+    color: #ffa600;
+}
+.x-action-col-cell.x-grid-item-focused .x-grid-cell-inner::before {
+    /*remove that ugly focus border */
+    border: none;
+}

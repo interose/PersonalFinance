@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Settings{% endtrans %}</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-8">
+                {% form_theme form with ['bootstrap_4_horizontal_layout.html.twig', 'parts/formField.html.twig'] %}
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-tags"></i> {% trans %}Add rule{% endtrans %}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        {{ form_errors(form) }}
+                        {{ form_row(form.category) }}
+                        {{ form_row(form.rule) }}
+                        {{ form_row(form.type) }}
+                        {{ form_row(form.transactionField) }}
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="card-footer">
+                        <a href="{{ path('settings_assignment') }}" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i> {% trans %}Back{% endtrans %}</a>
+                        <button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-save"></i> {% trans %}Save{% endtrans %}</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}

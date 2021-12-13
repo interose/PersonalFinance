@@ -1,0 +1,45 @@
+{% for subAccount in subAccounts %}
+    <h4>{% trans %}Subaccount{% endtrans %} #{{ loop.index }}</h4>
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label col-form-label-sm required">{% trans %}Bank account number{% endtrans %}</label>
+        <div class="col-sm-8">
+            <input type="text" readonly class="form-control form-control-sm" value="{{ subAccount.accountNumber }}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label col-form-label-sm required">{% trans %}Bank code{% endtrans %} / {% trans %}BIC{% endtrans %}</label>
+        <div class="col-sm-4">
+            <input type="text" readonly class="form-control form-control-sm" value="{{ subAccount.blz }}">
+        </div>
+        <div class="col-sm-4">
+            <input type="text" readonly class="form-control form-control-sm" value="{{ subAccount.bic }}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label col-form-label-sm required">{% trans %}IBAN{% endtrans %}</label>
+        <div class="col-sm-8">
+            <input type="text" readonly class="form-control form-control-sm" value="{{ subAccount.iban }}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label col-form-label-sm required">{% trans %}Description{% endtrans %}</label>
+        <div class="col-sm-8">
+            <input type="text" readonly class="form-control form-control-sm" value="{{ subAccount.description }}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label col-form-label-sm required">{% trans %}Enabled{% endtrans %}</label>
+        <div class="col-sm-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" {% if subAccount.isEnabled %}checked{% endif %} disabled>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <a href="{{ path('settings_account_edit_subaccount', {'id': subAccount.id}) }}" class="btn btn-xsm btn-info float-right"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+        </div>
+    </div>
+{% endfor %}

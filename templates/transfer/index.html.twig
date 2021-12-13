@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+            {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate', 'onsubmit': 'return window.onTransferSubmit(event);', 'id': 'form_transfer'}}) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group {{ not form.name.vars.valid ? 'has-error' }}">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
+
+            <div class="form-group {{ not form.info.vars.valid ? 'has-error' }}">
+                {{ form_label(form.info) }}
+                {{ form_widget(form.info) }}
+                {{ form_errors(form.info) }}
+            </div>
+
+            <div class="form-group {{ not form.iban.vars.valid ? 'has-error' }}">
+                {{ form_label(form.iban) }}
+                {{ form_widget(form.iban) }}
+                {{ form_errors(form.iban) }}
+            </div>
+
+            {{ form_label(form.amount) }}
+            <div class="form-group {{ not form.amount.vars.valid ? 'has-error' }}">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{% trans %}Amount{% endtrans %}</span>
+                    </div>
+                    {{ form_widget(form.amount) }}
+                    <div class="input-group-append">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+                {{ form_errors(form.amount) }}
+            </div>
+
+            {{ form_label(form.bic) }}
+            <div class="form-group {{ not form.bic.vars.valid ? 'has-error' }}">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{% trans %}BIC{% endtrans %}</span>
+                    </div>
+                    {{ form_widget(form.bic) }}
+                </div>
+                {{ form_errors(form.bic) }}
+            </div>
+
+            {{ form_label(form.bankName) }}
+            <div class="form-group {{ not form.bankName.vars.valid ? 'has-error' }}">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">{% trans %}Bank{% endtrans %}</span>
+                    </div>
+                    {{ form_widget(form.bankName) }}
+                </div>
+                {{ form_errors(form.bankName) }}
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="float-right">
+                        <input type="submit" value="{% trans %}Submit{% endtrans %}" class="btn btn-success btn-sm">
+                    </div>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

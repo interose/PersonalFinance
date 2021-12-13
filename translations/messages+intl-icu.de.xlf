@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="OT0W3oR" resname="Rule not found!">
+        <source>Rule not found!</source>
+        <target>Regel nicht gefunden!</target>
+      </trans-unit>
+      <trans-unit id="Y_gRYcD" resname="Category not found!">
+        <source>Category not found!</source>
+        <target>Kategorie nicht gefunden!</target>
+      </trans-unit>
+      <trans-unit id="H3RG4Lg" resname="Could not find category for given id (ID = %category_id%)">
+        <source>Could not find category for given id (ID = %category_id%)</source>
+        <target>Kategorie mit der id (ID = %category_id%) kann nicht gefunden werden!</target>
+      </trans-unit>
+      <trans-unit id="33BSZrA" resname="Could not find transaction for given id (ID = %transaction_id%)">
+        <source>Could not find transaction for given id (ID = %transaction_id%)</source>
+        <target>Transaktion mit der id (ID = %transaction_id%) kann nicht gefunden werden!</target>
+      </trans-unit>
+      <trans-unit id="aRIdP2P" resname="Missing fields">
+        <source>Missing fields</source>
+        <target>Einige Felder fehlen!</target>
+      </trans-unit>
+      <trans-unit id="DFTakV0" resname="Could not find split transaction for given id (ID = %transaction_id%)">
+        <source>Could not find split transaction for given id (ID = %transaction_id%)</source>
+        <target>Splittransaktion mit der id (ID = %transaction_id%) kann nicht gefunden werden!</target>
+      </trans-unit>
+      <trans-unit id=".o4ppiS" resname="Please provide a valid TAN!">
+        <source>Please provide a valid TAN!</source>
+        <target>Bitte eine gültige TAN eingeben!</target>
+      </trans-unit>
+      <trans-unit id="dKiDoDe" resname="Settings">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="yRDUdNz" resname="General">
+        <source>General</source>
+        <target>General</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Speichern</target>
+      </trans-unit>
+      <trans-unit id="onz.UaL" resname="Add rule">
+        <source>Add rule</source>
+        <target>Regel hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="dpAPG.0" resname="Back">
+        <source>Back</source>
+        <target>Zurück</target>
+      </trans-unit>
+      <trans-unit id="KdI8v9l" resname="Edit rule">
+        <source>Edit rule</source>
+        <target>Regel bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="QiiusHx" resname="Rules">
+        <source>Rules</source>
+        <target>Regeln</target>
+      </trans-unit>
+      <trans-unit id="PluQrgU" resname="Chart">
+        <source>Chart</source>
+        <target>Chart</target>
+      </trans-unit>
+      <trans-unit id=".FdQV3k" resname="Transfer successful!">
+        <source>Transfer successful!</source>
+        <target>Überweisung erfolgreich!</target>
+      </trans-unit>
+      <trans-unit id="SeltfN9" resname="Amount">
+        <source>Amount</source>
+        <target>Betrag</target>
+      </trans-unit>
+      <trans-unit id="2Bz6Sw." resname="BIC">
+        <source>BIC</source>
+        <target>BIC</target>
+      </trans-unit>
+      <trans-unit id="Z2xHG8j" resname="Bank">
+        <source>Bank</source>
+        <target>Bank</target>
+      </trans-unit>
+      <trans-unit id="FV_BbAQ" resname="Submit">
+        <source>Submit</source>
+        <target>Absenden</target>
+      </trans-unit>
+      <trans-unit id="xBfLiOP" resname="Transfers">
+        <source>Transfers</source>
+        <target>Überweisungen</target>
+      </trans-unit>
+      <trans-unit id="1LHqVwj" resname="Overview">
+        <source>Overview</source>
+        <target>Übersicht</target>
+      </trans-unit>
+      <trans-unit id="mxH2twf" resname="Monthly">
+        <source>Monthly</source>
+        <target>Monatsübersicht</target>
+      </trans-unit>
+      <trans-unit id="_HapfCO" resname="The last six months">
+        <source>The last six months</source>
+        <target>Die letzten sechs Monate</target>
+      </trans-unit>
+      <trans-unit id="5Nf9NGC" resname="Annual overview">
+        <source>Annual overview</source>
+        <target>Jahresübersicht</target>
+      </trans-unit>
+      <trans-unit id="Z7aWRoY" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Dashboard</target>
+      </trans-unit>
+      <trans-unit id="IXMEykZ" resname="Current savings rate">
+        <source>Current savings rate</source>
+        <target>Sparquote aktuelles Jahr</target>
+      </trans-unit>
+      <trans-unit id="rVkiKWo" resname="Current luxury rate">
+        <source>Current luxury rate</source>
+        <target>Luxusquote aktuelles Jahr</target>
+      </trans-unit>
+      <trans-unit id="Sk9f5Ow" resname="What is left at the end of the month">
+        <source>What is left at the end of the month</source>
+        <target>Was bleibt am Monatsende übrig</target>
+      </trans-unit>
+      <trans-unit id="TONZchd" resname="Mainaccount">
+        <source>Mainaccount</source>
+        <target>Girokonto</target>
+      </trans-unit>
+      <trans-unit id="qv30KP0" resname="Add category">
+        <source>Add category</source>
+        <target>Kategorie hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories">
+        <source>Categories</source>
+        <target>Kategorien</target>
+      </trans-unit>
+      <trans-unit id="IWEN1vH" resname="Edit category">
+        <source>Edit category</source>
+        <target>Kategorie bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="I9wnU3e" resname="Update Bookings">
+        <source>Update Bookings</source>
+        <target>Buchungen aktualisieren</target>
+      </trans-unit>
+      <trans-unit id="395Cw5C" resname="New transfer">
+        <source>New transfer</source>
+        <target>Neue Überweisung</target>
+      </trans-unit>
+      <trans-unit id="QcVSa3g" resname="Please enter TAN">
+        <source>Please enter TAN</source>
+        <target>Bitte eine TAN eingeben</target>
+      </trans-unit>
+      <trans-unit id="pkpZygK" resname="An error has occurred!">
+        <source>An error has occurred!</source>
+        <target>Ein Fehler ist aufgetreten!</target>
+      </trans-unit>
+      <trans-unit id="2ZRjNzS" resname="Subaccount">
+        <source>Subaccount</source>
+        <target>Subaccount</target>
+      </trans-unit>
+      <trans-unit id="ZwCpnhY" resname="Bank account number">
+        <source>Bank account number</source>
+        <target>Kontonummer</target>
+      </trans-unit>
+      <trans-unit id="rrnQE2U" resname="Bank code">
+        <source>Bank code</source>
+        <target>BLZ</target>
+      </trans-unit>
+      <trans-unit id="fjRcO6e" resname="IBAN">
+        <source>IBAN</source>
+        <target>IBAN</target>
+      </trans-unit>
+      <trans-unit id="q2oWS_D" resname="Edit account">
+        <source>Edit account</source>
+        <target>Konto bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="7n7lgw8" resname="Add account">
+        <source>Add account</source>
+        <target>Konto hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="AlHaqCz" resname="Accountoverview">
+        <source>Accountoverview</source>
+        <target>Kontoübersicht</target>
+      </trans-unit>
+      <trans-unit id="WmYitsk" resname="Edit credentials">
+        <source>Edit credentials</source>
+        <target>Zugangsdaten bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="U0d8qDT" resname="Account holder">
+        <source>Account holder</source>
+        <target>Kontoinhaber</target>
+      </trans-unit>
+      <trans-unit id="CQxSuCK" resname="Online banking">
+        <source>Online banking</source>
+        <target>Online banking</target>
+      </trans-unit>
+      <trans-unit id="01cXXP6" resname="Media">
+        <source>Media</source>
+        <target>Media</target>
+      </trans-unit>
+      <trans-unit id="6SMfyQe" resname="Subaccounts">
+        <source>Subaccounts</source>
+        <target>Subaccounts</target>
+      </trans-unit>
+      <trans-unit id="Jj5L2X_" resname="Update subaccounts">
+        <source>Update subaccounts</source>
+        <target>Subaccounts aktualisieren</target>
+      </trans-unit>
+      <trans-unit id="dPYTXd4" resname="Online credentials">
+        <source>Online credentials</source>
+        <target>Onlinezugangsdaten</target>
+      </trans-unit>
+      <trans-unit id="ruBMFF6" resname="Update complete!">
+        <source>Update complete!</source>
+        <target>Aktualisierung abgeschlossen!</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="ksHN.fT" resname="Enabled">
+        <source>Enabled</source>
+        <target>Aktiviert</target>
+      </trans-unit>
+      <trans-unit id="RkxP.QG" resname="Edit">
+        <source>Edit</source>
+        <target>Bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="lyBKbmb" resname="Edit subaccount">
+        <source>Edit subaccount</source>
+        <target>Subaccount bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="KSwG8AR" resname="Category">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </trans-unit>
+      <trans-unit id="YoRfMaL" resname="Rule">
+        <source>Rule</source>
+        <target>Regel</target>
+      </trans-unit>
+      <trans-unit id="Q4CdKEC" resname="Ruletype">
+        <source>Ruletype</source>
+        <target>Regeltyp</target>
+      </trans-unit>
+      <trans-unit id="ck7qECa" resname="Transactionfield">
+        <source>Transactionfield</source>
+        <target>Transaktion Feld</target>
+      </trans-unit>
+      <trans-unit id="SkaeTw9" resname="Please select">
+        <source>Please select</source>
+        <target>Bitte auswählen</target>
+      </trans-unit>
+      <trans-unit id="K8eoRCL" resname="Name of the Bank">
+        <source>Name of the Bank</source>
+        <target>Bankname</target>
+      </trans-unit>
+      <trans-unit id="tRLZfny" resname="User">
+        <source>User</source>
+        <target>Benutzer</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Passwort</target>
+      </trans-unit>
+      <trans-unit id="6iuKh4h" resname="Background">
+        <source>Background</source>
+        <target>Hintergrund</target>
+      </trans-unit>
+      <trans-unit id="6iuKh5h" resname="Foreground">
+        <source>Foreground</source>
+        <target>Vordergrund</target>
+      </trans-unit>
+      <trans-unit id="YJg23TW" resname="Please select an account">
+        <source>Please select an account</source>
+        <target>Bitte ein Konto wählen</target>
+      </trans-unit>
+      <trans-unit id="NMoOdmC" resname="Group">
+        <source>Group</source>
+        <target>Gruppe</target>
+      </trans-unit>
+      <trans-unit id="jVmCnB4" resname="Usage">
+        <source>Usage</source>
+        <target>Verwendungszweck</target>
+      </trans-unit>
+      <trans-unit id="UfrJhel" resname="Recipient">
+        <source>Recipient</source>
+        <target>Empfänger</target>
+      </trans-unit>
+      <trans-unit id="haOas0X" resname="Yes">
+        <source>Yes</source>
+        <target>Ja</target>
+      </trans-unit>
+      <trans-unit id="HqRCoTS" resname="No">
+        <source>No</source>
+        <target>Nein</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

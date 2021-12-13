@@ -1,0 +1,15 @@
+<form name="transfer" method="post" class="form-horizontal" novalidate="novalidate" onsubmit="return window.onFormTanSubmit(event, document.getElementById('tan').value);">
+    <div class="form-group row">
+        <label class="sr-only control-label required" for="tan">TAN</label>
+        <div class="col-sm-12">
+            <input type="text" id="tan" name="tan" required="required" placeholder="TAN" class="form-control" autocomplete="off">
+            <input type="hidden" id="action" name="action">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-12">
+            <input type="submit" value="{% trans %}Submit{% endtrans %}" class="btn btn-success btn-sm float-right">
+        </div>
+    </div>
+</form>

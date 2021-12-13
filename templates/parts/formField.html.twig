@@ -1,0 +1,13 @@
+{% use 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block form_widget_simple -%}
+    {% if type is not defined or type != 'hidden' %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ (type|default('') == 'file' ? ' custom-file-input' : ' form-control-sm'))|trim}) -%}
+    {% endif %}
+    {{- parent() -}}
+{%- endblock form_widget_simple %}
+
+{% block choice_widget_collapsed -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control-sm')|trim}) -%}
+    {{- parent() -}}
+{%- endblock choice_widget_collapsed %}

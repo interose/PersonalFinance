@@ -1,0 +1,87 @@
+{% form_theme form with ['bootstrap_4_horizontal_layout.html.twig', 'parts/formField.html.twig'] %}
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+<div class="row">
+    {{ form_errors(form) }}
+    <div class="col-md-7">
+        <div class="card card-custom">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-university"></i> {% trans %}Bank{% endtrans %}</h3>
+            </div>
+            <div class="card-body">
+                {{ form_row(form.name) }}
+                {{ form_row(form.bic) }}
+                {{ form_row(form.bankCode) }}
+                {{ form_row(form.url) }}
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        <div class="card card-custom">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-user"></i> {% trans %}Account holder{% endtrans %}</h3>
+            </div>
+            <div class="card-body">
+                {{ form_row(form.accountHolder) }}
+                {{ form_row(form.iban) }}
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <div class="col-md-5">
+        {% if action == 'new' %}
+        <div class="card card-custom">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-key"></i> {% trans %}Online banking{% endtrans %}</h3>
+            </div>
+            <div class="card-body">
+                {{ form_row(form.username) }}
+                {{ form_row(form.password) }}
+                {{ form_row(form.tanMediaName) }}
+                {{ form_row(form.tanMechanism) }}
+            </div>
+            <!-- /.card-body -->
+        </div>
+        {% endif %}
+
+        <div class="card card-custom">
+            <div class="card-header">
+                <h3 class="card-title"><i class="far fa-image"></i> {% trans %}Media{% endtrans %}</h3>
+            </div>
+            <div class="card-body">
+                {{ form_row(form.logo) }}
+                {{ form_row(form.backgroundColor) }}
+                {{ form_row(form.foregroundColor) }}
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        {% if action == 'edit' %}
+            <div class="card card-custom" id="subaccounts">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-university"></i> {% trans %}Subaccounts{% endtrans %}</h3>
+                </div>
+                <div class="card-body">
+                    {% include 'settings_account/subAccountList.html.twig' %}
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-solid">
+            <div class="card-footer">
+                <a href="{{ path('settings_account') }}" class="btn btn-sm btn-default"><i class="far fa-trash-alt"></i> {% trans %}Back{% endtrans %}</a>
+
+                <button type="submit" class="btn btn-sm btn-success float-right"><i class="fas fa-save"></i> {% trans %}Submit{% endtrans %}</button>
+                {% if action == 'edit' %}
+                <a href="{{ path('settings_account_fetch_subaccount', {id: account_id}) }}" id="updateSubaccountsButton" class="btn btn-sm btn-info float-right" style="margin-right: 10px;"><i class="fas fa-sync"></i> {% trans %}Update subaccounts{% endtrans %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

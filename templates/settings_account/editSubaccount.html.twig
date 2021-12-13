@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('settingsAccountEditSubaccount') }}
+{% endblock %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Settings{% endtrans %}</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-8">
+                {% form_theme form with ['bootstrap_4_horizontal_layout.html.twig', 'parts/formField.html.twig'] %}
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                {{ form_errors(form) }}
+
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title">{% trans %}Edit subaccount{% endtrans %}</h3>
+                    </div>
+                    <div class="card-body bootstrap-toggle-form">
+                        {{ form_row(form.accountNumber) }}
+
+                        <div class="form-group row">
+                            {{ form_label(form.bic) }}
+                            <div class="col-sm-5">{{ form_widget(form.blz) }}</div>
+                            <div class="col-sm-5">{{ form_widget(form.bic) }}</div>
+                        </div>
+
+                        {{ form_row(form.iban) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.isEnabled) }}
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <a href="{{ path('settings_account') }}" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i> {% trans %}Back{% endtrans %}</a>
+                        <button type="submit" class="btn btn-success btn-sm float-right"><i class="fas fa-save"></i> {% trans %}Save{% endtrans %}</button>
+                    </div>
+
+                    <!-- /.card-footer -->
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('settingsAccountEditSubaccount') }}
+{% endblock %}

@@ -1,0 +1,15 @@
+.x-tree-icon {
+    display: none !important;
+    background-image: none;
+    width: 0;
+}
+.x-grid-tree-node-expanded .x-tree-icon-parent.tree-none, .tree-none {
+    background-image: none;
+    width: 0;
+}
+tr.summary.x-grid-tree-node-leaf.x-grid-row, tr.summary {
+    font-weight: bold;
+}
+tr.summary.x-grid-row td {
+    border-top: 1px solid #cfcfcf;
+}

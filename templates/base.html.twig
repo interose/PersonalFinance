@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('index') }}
+  {% endblock %}
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  {% include 'parts/header.html.twig' %}
+
+  {% include 'parts/navigation.html.twig' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">{% block body %}{% endblock %}</div>
+  <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+{% include 'parts/modal.html.twig' %}
+
+{% block javascripts %}
+  {% include 'parts/xmlHttpRoutes.html.twig' %}
+  {% include 'parts/jsTranslations.html.twig' %}
+
+  {{ encore_entry_script_tags('index') }}
+{% endblock %}
+</body>
+</html>

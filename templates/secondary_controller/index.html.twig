@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('secondaryAccount') }}
+    <link rel="stylesheet" href="{{ asset('build/ext/theme-crisp-all.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Subaccount{% endtrans %}</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row"><div class="col-12"><div id="ext-container"></div></div></div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/ext/ext-all.js') }}"></script>
+    <script src="{{ asset('build/ext/ext-locale-de.js') }}"></script>
+    <script src="{{ asset('build/ext/theme-crisp.js') }}"></script>
+
+    {{ encore_entry_script_tags('secondaryAccount') }}
+{% endblock %}

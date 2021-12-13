@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+            {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate', 'onsubmit': 'return window.onTransferTanSubmit(event);', 'id': 'form_tan_transfer'}}) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group {{ not form.tan.vars.valid ? 'has-error' }}">
+                {{ form_label(form.tan) }}
+                <div class="col-sm-12">
+                    {{ form_widget(form.tan) }}
+                    {{ form_errors(form.tan) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input type="submit" value="{% trans %}Submit{% endtrans %}" class="btn btn-success pull-right">
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

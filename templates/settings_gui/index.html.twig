@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('settingsGui') }}
+    {{ parent() }}
+{% endblock %}
+
+{% form_theme form with ['bootstrap_4_horizontal_layout.html.twig', 'parts/formField.html.twig'] %}
+{% form_theme form with ['bootstrap_4_horizontal_layout.html.twig', _self] %}
+{% block form_label_class -%}col-sm-3{%- endblock form_label_class %}
+{% block form_group_class -%}col-sm-9{%- endblock form_group_class %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Settings{% endtrans %}</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+
+
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                {{ form_errors(form) }}
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-tags"></i> {% trans %}General{% endtrans %}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        {{ form_row(form.main_account) }}
+                        {{ form_row(form.salary_categories) }}
+                        {{ form_row(form.savings_categories) }}
+                        {{ form_row(form.luxury_categories) }}
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success float-right btn-sm"><i class="fas fa-save"></i> {% trans %}Save{% endtrans %}</button>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('settingsGui') }}
+{% endblock %}

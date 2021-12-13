@@ -1,0 +1,124 @@
+/* basic adjustments for admin-lte and bootstrap */
+body {
+    font-size: 0.85rem;
+}
+[class*="sidebar-dark-"] {
+    background-color: #222d32;
+}
+.card-custom:not(.card-outline) > .card-header {
+    color: #fff;
+    background: #222d32;
+    background-color: #222d32;
+}
+.content-header-tools {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+td > label.checkbox-inline {
+    margin-bottom: 0;
+}
+.btn-my-toggle {
+    color: #000;
+    background-color: #ffa600;
+    border-color: #ffa600;
+    box-shadow: none;
+}
+.content-header {
+    position: relative;
+}
+.btn-xsm {
+    padding: .1rem .3rem;
+    font-size: .775rem;
+    line-height: 1.5;
+    border-radius: .15rem;
+}
+
+
+/* pagination */
+.page-link {
+    color: #787878;
+}
+.page-link:hover {
+    color: #787878;
+}
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #222d32;
+    border-color: #222d32;
+}
+
+
+/* adjustments for select2 */
+.select2-container--default .select2-results__option {
+    padding: 2px 12px;
+    font-size: 0.85rem
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #000;
+    background-color: #ffa600;
+    border-color: #ffa600;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: rgba(0,0,0,.7);
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: rgba(0,0,0);
+}
+
+
+/* loading helper for dashboard and modals */
+.loader {
+    position: absolute;
+    background-color: rgba(255,255,255,.8);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader.hidden {
+    display: none;
+}
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+.spinner-border {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    vertical-align: text-bottom;
+    border: .25rem solid #333;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 1.5s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+
+/* disable the padding because of toggle plugin and put some distance between toggle and lable */
+.bootstrap-toggle-form .form-check {
+    padding: 0;
+}
+.bootstrap-toggle-form .form-check-label {
+    padding-left: 10px;
+}
+
+
+/* dashboard */
+.info-box-dashboard {
+    align-items: center;
+}
+.info-box-dashboard .info-box-icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70px;
+    height: 70px;
+    margin: 0 10px;
+}

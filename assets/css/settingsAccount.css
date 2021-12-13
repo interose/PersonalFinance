@@ -1,0 +1,24 @@
+.content {
+    padding: 30px;
+}
+.info-box {
+    padding: 10px;
+    position: relative;
+}
+.info-box-content {
+    color: black;
+}
+.account-action {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.account-action a {
+    color: #777;
+}
+.info-box  .info-box-icon-account-logo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 120px;
+}

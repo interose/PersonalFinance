@@ -1,0 +1,3 @@
+services:
+    App\Lib\MyDateTime:
+        public: true

@@ -1,0 +1,25 @@
+{
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "@symfony/webpack-encore": "^0.28.2",
+        "add": "^2.0.6",
+        "admin-lte": "^3.1",
+        "bootstrap": "4.6.0",
+        "bootstrap-toggle": "^2.2.2",
+        "chart.js": "^3.4.0",
+        "javascript-autocomplete": "^1.0.5",
+        "jquery": "^3.6.0",
+        "select2": "^4.0.13",
+        "webpack-notifier": "^1.6.0",
+        "yarn": "^1.22.10"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    }
+}

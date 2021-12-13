@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('settingsAccount') }}
+{% endblock %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Settings{% endtrans %}</h1>
+
+        <div class="pull-right content-header-tools">
+            <a href="{{ path('settings_account_new') }}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i> {% trans %}Add account{% endtrans %}</a>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-tags"></i> {% trans %}Accountoverview{% endtrans %}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                        {% for account in accounts %}
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <span class="info-box-icon info-box-icon-account-logo" style="background-color: {{ account.backgroundColor }};background-image: url('{{ account.logo }}')"></span>
+                                    <div class="info-box-content">
+                                        <div class="account-action">
+                                            <a href="{{ path('settings_account_edit_credentials', {'id': account.id}) }}" title="{% trans %}Edit credentials{% endtrans %}"><i class="fas fa-key"></i></a><br>
+                                            <a href="{{ path('settings_account_edit', {'id': account.id}) }}" title="{% trans %}Edit account{% endtrans %}"><i class="far fa-edit"></i></a>
+                                        </div>
+                                        <span class="info-box-text"><b>{{ account.name }}</b><br>
+                                        {{ account.accountHolder }}<br>
+                                        {{ account.iban }}<br>
+                                        {{ account.bic }} - {{ account.bankCode }}
+                                        </span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('settingsAccount') }}
+{% endblock %}

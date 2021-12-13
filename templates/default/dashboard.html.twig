@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1 class="m-0">{% trans %}Dashboard{% endtrans %}</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                {% for subAccount in subAccounts %}
+                    <div class="col-md-3 col-sm-4">
+                        <div class="info-box info-box-dashboard" style="background-color: {{ subAccount.account.backgroundColor }}; color: {{ subAccount.account.foregroundColor }};">
+                            <span class="info-box-icon" style="background-color: {{ subAccount.account.backgroundColor }};background-image: url('{{ subAccount.account.logo }}')"></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text" id="data_subaccount_name">{{ subAccount.account.name }}</span>
+                                <span class="info-box-number" id="data_subaccount_balance">{% if subAccount.currentBalance is not null %}{{ subAccount.currentBalance.formattedBalance }}{% else %}0 €{% endif %}</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%; background-color: {{ subAccount.account.foregroundColor }};"></div>
+                                </div>
+                                <span class="progress-description" id="data_subaccount_description">{{ subAccount.description }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success"><i class="fas fa-piggy-bank"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">{% trans %}Current savings rate{% endtrans %}</span>
+                            <span class="info-box-number" id="data_savings_rate">{{ savingsRate }} %</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success"><i class="far fa-gem"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">{% trans %}Current luxury rate{% endtrans %}</span>
+                            <span class="info-box-number" id="data_luxury_rate">{{ luxuryRate }} %</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">{% trans %}What is left at the end of the month{% endtrans %}</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body"><canvas class="series-wrapper" id="series_monthly_remaining" height="200"></canvas></div>
+                        <!-- /.card-body -->
+                        <div class="overlay" id="series_monthly_remaining_loader"><i class="spinner-border"></i></div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">{% trans %}Mainaccount{% endtrans %}</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body"><canvas class="series-wrapper" id="series_account_progress" height="200"></canvas></div>
+                        <!-- /.card-body -->
+                        <div class="overlay" id="series_account_progress_loader"><i class="spinner-border"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('dashboard') }}
+{% endblock %}

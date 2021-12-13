@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('transferList') }}
+
+    <link rel="stylesheet" href="{{ asset('build/ext/theme-crisp-all.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Transfers{% endtrans %}</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="far fa-money-bill-alt"></i> {% trans %}Overview{% endtrans %}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="ext-container"></div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/ext/ext-all.js') }}"></script>
+    <script src="{{ asset('build/ext/ext-locale-de.js') }}"></script>
+    <script src="{{ asset('build/ext/theme-crisp.js') }}"></script>
+
+    {{ encore_entry_script_tags('transferList') }}
+{% endblock %}

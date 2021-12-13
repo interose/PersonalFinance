@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Settings{% endtrans %}</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-tags"></i> {% trans %}Edit category{% endtrans %}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        {{ error }}
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="card-footer">
+                        <a href="{{ path('settings_category') }}" class="btn btn-danger btn-sm float-right"><i class="far fa-trash-alt"></i> {% trans %}Back{% endtrans %}</a>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

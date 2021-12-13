@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('settingsAccount') }}
+{% endblock %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}Settings{% endtrans %} <small>{% trans %}Edit account{% endtrans %}</small></h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        {% include 'settings_account/_form.html.twig' with {'action': 'edit'} %}
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('settingsAccount') }}
+{% endblock %}
