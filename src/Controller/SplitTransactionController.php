@@ -62,7 +62,7 @@ class SplitTransactionController extends AbstractController
         $splitTransaction->setValutaDate($valutaDate);
 
         $splitTransaction->setDescription($data['description'] ?? '');
-        $splitTransaction->setAmount($data['amount'] ?? 0);
+        $splitTransaction->setAmount(intval($data['amount'] * 100) ?? 0);
 
         $em->persist($splitTransaction);
         $em->flush();
@@ -118,7 +118,7 @@ class SplitTransactionController extends AbstractController
         $splitTransaction->setValutaDate($valutaDate);
 
         if (isset($data['amount'])) {
-            $splitTransaction->setAmount($data['amount']);
+            $splitTransaction->setAmount(intval($data['amount'] * 100));
         }
 
         if (isset($data['description'])) {
