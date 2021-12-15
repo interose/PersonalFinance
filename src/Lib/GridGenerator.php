@@ -34,7 +34,7 @@ class GridGenerator
      *
      * @return array An array containing the data
      */
-    public function getGridData(SubAccount $subAccount, int $year, int $month = 0, bool $onlyUnassigned = false, string $name = '', string $description = ''): array
+    public function getGridData(SubAccount $subAccount, int $year = 0, int $month = 0, bool $onlyUnassigned = false, string $name = '', string $description = ''): array
     {
         $data = [];
 

@@ -164,7 +164,7 @@ class TransactionRepository extends ServiceEntityRepository
      *
      * @return mixed The query result
      */
-    public function getByYear(SubAccount $subAccount, int $year, int $month = 0, bool $onlyUnassigned = false, string $name = '', string $description = ''): mixed
+    public function getByYear(SubAccount $subAccount, int $year = 0, int $month = 0, bool $onlyUnassigned = false, string $name = '', string $description = ''): mixed
     {
         $qb = $this->createQueryBuilder('t');
 
@@ -177,18 +177,23 @@ class TransactionRepository extends ServiceEntityRepository
         $qb->andWhere('t.subAccount = :subAccount');
         $qb->setParameter('subAccount', $subAccount);
 
-        if (0 === $month) {
-            $start = strtotime(sprintf('01/01/%d 00:00:00', $year));
-            $end = strtotime(sprintf('12/31/%d 00:00:00', $year));
-        } else {
+        $start = $end = null;
+
+        if (0 !== $year && 0 !== $month) {
             $start = strtotime(sprintf('%d/01/%d 00:00:00', $month, $year));
             $tmp = strtotime('+1 month', $start);
             $end = strtotime('-1 second', $tmp);
+
+        } else if (0 !== $year) {
+            $start = strtotime(sprintf('01/01/%d 00:00:00', $year));
+            $end = strtotime(sprintf('12/31/%d 00:00:00', $year));
         }
 
-        $qb->andWhere('t.valutaDate BETWEEN :start AND :end');
-        $qb->setParameter('start', date('Y-m-d', $start));
-        $qb->setParameter('end', date('Y-m-d', $end));
+        if (null !== $start && null !== $end) {
+            $qb->andWhere('t.valutaDate BETWEEN :start AND :end');
+            $qb->setParameter('start', date('Y-m-d', $start));
+            $qb->setParameter('end', date('Y-m-d', $end));
+        }
 
         if ($onlyUnassigned) {
             $qb->andWhere('t.category IS NULL');

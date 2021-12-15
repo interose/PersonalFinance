@@ -45,7 +45,7 @@ class GridController extends AbstractController
         $name = $request->query->get('name', '');
         $description = $request->query->get('description', '');
 
-        $year = $request->query->getInt('year', intval(date('Y')));
+        $year = $request->query->getInt('year');
         $month = $request->query->getInt('month');
 
         return new JsonResponse([
