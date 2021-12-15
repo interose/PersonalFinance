@@ -45,10 +45,10 @@ class GridGenerator
                 /** @var SplitTransaction $splitTransaction */
                 foreach ($transaction->getSplitTransactions() as $splitTransaction) {
                     $category = '';
-                    if ($transaction->getCategory()) {
-                        $category = $transaction->getCategory()->getName();
-                        if ($transaction->getCategory()->getCategoryGroup()) {
-                            $category = sprintf('%s:%s', $transaction->getCategory()->getCategoryGroup()->getName(), $category);
+                    if ($splitTransaction->getCategory()) {
+                        $category = $splitTransaction->getCategory()->getName();
+                        if ($splitTransaction->getCategory()->getCategoryGroup()) {
+                            $category = sprintf('%s:%s', $splitTransaction->getCategory()->getCategoryGroup()->getName(), $category);
                         }
                     }
 
@@ -61,7 +61,7 @@ class GridGenerator
                         'description_raw' => $splitTransaction->getDescription(),
                         'booking_text' => $transaction->getBookingText(),
                         'credit_debit' => $transaction->getCreditDebit(),
-                        'valuta_date' => $transaction->getValutaDate()->format('Y-m-d'),
+                        'valuta_date' => $splitTransaction->getValutaDate()->format('Y-m-d'),
                         'category_id' => $splitTransaction->getCategory() ? $splitTransaction->getCategory()->getId() : '',
                         'category_name' => $category,
                         'split' => true,
