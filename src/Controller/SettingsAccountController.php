@@ -62,7 +62,7 @@ class SettingsAccountController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $key = $bag->get('encryptionKey');
-            if (empty($key)) {
+            if (strlen($key) === 0) {
                 throw new \Exception('Encryption key not set!');
             }
 
@@ -136,7 +136,7 @@ class SettingsAccountController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $key = $bag->get('encryptionKey');
-            if (empty($key)) {
+            if (strlen($key) === 0) {
                 throw new \Exception('Encryption key not set!');
             }
 

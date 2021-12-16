@@ -69,8 +69,16 @@ class FinTsTransferHandler extends FinTsBase
      */
     private function validateAccountHolder()
     {
-        if (empty($this->accountHolder) || empty($this->accountHolderIban) || empty($this->accountHolderBic)) {
-            throw new \Exception('Accountholder information has to be set!');
+        if (strlen($this->accountHolder) === 0) {
+            throw new \Exception('Accountholder has to be set!');
+        }
+
+        if (strlen($this->accountHolderIban) === 0) {
+            throw new \Exception('Accountholder IBAN has to be set!');
+        }
+
+        if (strlen($this->accountHolderBic) === 0) {
+            throw new \Exception('Accountholder BIC has to be set!');
         }
     }
 
@@ -83,19 +91,28 @@ class FinTsTransferHandler extends FinTsBase
      */
     private function prepareSepaTransfer(array $params = []): SEPATransfer
     {
-        if (!isset($params['info']) || empty($params['info'])) {
+        $info = $params['info'] ?? '';
+        if (strlen($info) === 0) {
             throw new \Exception('Info for sepa transfer is missing');
         }
-        if (!isset($params['name']) || empty($params['name'])) {
+
+        $name = $params['name'] ?? '';
+        if (strlen($name) === 0) {
             throw new \Exception('Name for sepa transfer is missing');
         }
-        if (!isset($params['iban']) || empty($params['iban'])) {
+
+        $iban = $params['iban'] ?? '';
+        if (strlen($iban) === 0) {
             throw new \Exception('IBAN for sepa transfer is missing');
         }
-        if (!isset($params['bic']) || empty($params['bic'])) {
+
+        $bic = $params['bic'] ?? '';
+        if (strlen($bic) === 0) {
             throw new \Exception('BIC for sepa transfer is missing');
         }
-        if (!isset($params['amount']) || empty($params['amount'])) {
+
+        $amount = $params['amount'] ?? 0;
+        if (0 === $amount) {
             throw new \Exception('Amount for sepa transfer is missing');
         }
 

@@ -41,7 +41,7 @@ class CurrentBalanceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
 
-        if (empty($balanceObj)) {
+        if (null === $balanceObj) {
             $balanceObj = new CurrentBalance();
             $balanceObj->setSubAccount($subAccount);
         }

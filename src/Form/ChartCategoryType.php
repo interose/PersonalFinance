@@ -18,9 +18,9 @@ class ChartCategoryType extends AbstractType
 
         $choices = [];
         foreach ($repository->getAllWithGroup() as $category) {
-            $groupName = $category['groupName'];
+            $groupName = $category['groupName'] ?? '';
 
-            if (!empty($groupName)) {
+            if (strlen($groupName) > 0) {
                 $choices[$groupName][$category['name']] = $category['id'];
             } else {
                 $choices['Not grouped'][$category['name']] = $category['id'];

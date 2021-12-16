@@ -41,23 +41,25 @@ class CategoryEvaluator
                 continue;
             }
 
-            if (!isset($rule['comparative']) || empty($rule['comparative'])) {
+            $comparative = $rule['comparative'] ?? '';
+            if (strlen($comparative) === 0) {
                 $this->logger->error('CategoryEvaluator: empty comparison value!');
                 continue;
             }
 
-            if (!isset($rule['category']) || empty($rule['category']) || !is_int($rule['category'])) {
+            $category = intval($rule['category'] ?? 0);
+            if (0 === $category) {
                 $this->logger->error('CategoryEvaluator: missing category id!');
                 continue;
             }
 
             if ($rule['type'] === CategoryAssignmentRule::TYPE_SIMPLE) {
-                if ($rule['comparative'] === $value) {
-                    return $rule['category'];
+                if ($comparative === $value) {
+                    return $category;
                 }
             } elseif ($rule['type'] === CategoryAssignmentRule::TYPE_REGEX) {
-                if (1 === preg_match($rule['comparative'], $value)) {
-                    return $rule['category'];
+                if (1 === preg_match($comparative, $value)) {
+                    return $category;
                 }
             } else {
                 $this->logger->error(sprintf('CategoryEvaluator: unknown comparison type: %d', $rule['type']));

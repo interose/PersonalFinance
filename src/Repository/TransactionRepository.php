@@ -200,12 +200,12 @@ class TransactionRepository extends ServiceEntityRepository
             $qb->andWhere('st.category IS NULL');
         }
 
-        if (!empty($name)) {
+        if (strlen($name) !== 0) {
             $qb->andWhere($qb->expr()->like('t.name', ':name'));
             $qb->setParameter('name', '%'.$name.'%');
         }
 
-        if (!empty($description)) {
+        if (strlen($description) !== 0) {
             $qb->andWhere($qb->expr()->like('t.description', ':description'));
             $qb->setParameter('description', '%'.$description.'%');
         }

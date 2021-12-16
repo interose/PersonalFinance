@@ -89,7 +89,7 @@ class SplitTransaction
 
     public function hasCategory(): bool
     {
-        return !empty($this->category);
+        return $this->category !== null && count($this->category) > 0;
     }
 
     public function getValutaDate(): ?\DateTimeInterface

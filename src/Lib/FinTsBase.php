@@ -59,11 +59,11 @@ class FinTsBase
      * @throws \Fhp\Protocol\ServerException
      * @throws \Exception
      */
-    protected function init(?string $tan = null): ?BaseAction
+    protected function init(?string $tan = ''): ?BaseAction
     {
         $action = null;
 
-        if (empty($tan)) {
+        if (strlen($tan) === 0) {
             $this->create();
             $this->login();
         } else {
@@ -187,10 +187,6 @@ class FinTsBase
             }
         } else {
             throw new \Exception(sprintf('Invalid action: %s', get_class($action)));
-        }
-
-        if (empty($accounts)) {
-            throw new \Exception('No accounts!');
         }
 
         return $accounts;
