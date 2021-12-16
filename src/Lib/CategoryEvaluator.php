@@ -2,6 +2,7 @@
 
 namespace App\Lib;
 
+use App\Entity\Category;
 use App\Entity\CategoryAssignmentRule;
 use App\Repository\CategoryAssignmentRuleRepository;
 use Fhp\Model\StatementOfAccount\Transaction;
@@ -27,9 +28,9 @@ class CategoryEvaluator
     /**
      * @param Transaction $transaction
      *
-     * @return int|null
+     * @return Category|null
      */
-    public function evaluate(Transaction $transaction): ?int
+    public function evaluate(Transaction $transaction): ?Category
     {
         foreach ($this->rules as $rule) {
             if ($rule['field'] === CategoryAssignmentRule::TRANSACTION_FIELD_NAME) {
@@ -47,9 +48,9 @@ class CategoryEvaluator
                 continue;
             }
 
-            $category = intval($rule['category'] ?? 0);
-            if (0 === $category) {
-                $this->logger->error('CategoryEvaluator: missing category id!');
+            $category = $rule['category'] ?? null;
+            if (null === $category) {
+                $this->logger->error('CategoryEvaluator: missing category!');
                 continue;
             }
 
@@ -79,7 +80,7 @@ class CategoryEvaluator
                 'type' => $item->getType(),
                 'comparative' => $item->getRule(),
                 'field' => $item->getTransactionField(),
-                'category' => $item->getCategory()->getId(),
+                'category' => $item->getCategory(),
             ];
         }, $repository->findAll());
     }

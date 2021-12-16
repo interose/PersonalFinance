@@ -140,11 +140,11 @@ class TransactionHandler
     }
 
     /**
-     * @param Transaction $transaction A single transaction
-     * @param SubAccount  $subAccount
-     * @param int|null    $category    The category id
+     * @param Transaction   $transaction A single transaction
+     * @param SubAccount    $subAccount
+     * @param Category|null $category    The category id
      */
-    private function saveTransaction(Transaction $transaction, SubAccount $subAccount, int $category = null)
+    private function saveTransaction(Transaction $transaction, SubAccount $subAccount, Category $category = null)
     {
         $desc = explode('+', $transaction->getDescription1());
 
@@ -164,12 +164,9 @@ class TransactionHandler
             ->setChecksum($this->generateChecksum($transaction, $subAccount))
         ;
 
-        if ($category) {
-            $categoryObj = $this->em->getRepository(Category::class)->findOneBy(['id' => $category]);
-            if ($categoryObj) {
-                ++$this->iAssigned;
-                $obj->setCategory($categoryObj);
-            }
+        if ($category instanceof Category) {
+            ++$this->iAssigned;
+            $obj->setCategory($category);
         }
 
         $this->em->persist($obj);
