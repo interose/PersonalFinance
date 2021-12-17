@@ -56,11 +56,13 @@ class SplitTransactionHandler
      */
     public function setTransactionId(int $id = null)
     {
-        $this->transaction = $this->em->getRepository(Transaction::class)->findOneBy(['id' => $id]);
+        $transaction = $this->em->getRepository(Transaction::class)->findOneBy(['id' => $id]);
 
-        if (!$this->transaction) {
+        if (null === $transaction) {
             throw new \Exception(sprintf('No transaction for given key: %d', $id));
         }
+
+        $this->transaction = $transaction;
     }
 
     /**
