@@ -5,7 +5,8 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\SplitTransaction;
 use App\Entity\Transaction;
-use App\Lib\SplitTransactionHandler;
+use App\Lib\SplitTransactionHelper;
+use App\Repository\TransactionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -145,38 +146,27 @@ class SplitTransactionController extends AbstractController
     /**
      * @Route("/split-transaction", name="split_transaction_get", methods={"GET"})
      *
-     * @param Request                 $request The request
-     * @param SplitTransactionHandler $handler The lib for handling split transactions
+     * @param Request                $request The request
+     * @param SplitTransactionHelper $helper The lib for handling split transactions
      *
      * @return JsonResponse
      */
-    public function readAction(Request $request, SplitTransactionHandler $handler): JsonResponse
+    public function readAction(Request $request, TransactionRepository $repository, SplitTransactionHelper $helper): JsonResponse
     {
-        try {
-            $handler->setTransactionId($request->query->get('idTransaction'));
-        } catch (\Exception $e) {
+        $transaction = $repository->findOneBy(['id' => $request->query->getInt('idTransaction')]);
+        if (null === $transaction) {
             return new JsonResponse([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => 'Could not find transaction by given id!',
             ]);
         }
 
-        $data = $handler->getChildTransactions();
-
-        // get sum of split amounts
-        $sum = 0;
-        foreach ($data as $item) {
-            $sum += floatval($item['amount']);
-        }
-
-        $amount = floatval($handler->getTransaction()->getAmount()) - $sum;
-
         return new JsonResponse([
             'success' => true,
-            'data' => $data,
+            'data' => $helper->serialize($transaction),
             'transaction' => [
-                'description' => $handler->getTransaction()->getDescriptionRaw(),
-                'amount' =>  $amount,
+                'description' => $transaction->getDescriptionRaw(),
+                'amount' =>  $helper->calcRemaining($transaction),
             ],
         ]);
     }
