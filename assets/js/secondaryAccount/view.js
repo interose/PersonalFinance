@@ -32,7 +32,7 @@ export const grid = Ext.create('Ext.grid.Panel', {
         }
     },'-', {
         xtype: 'button',
-        text: 'zurück',
+        text: translation.subAccountBtnBack,
         listeners: {
             click: function(el) {
                 let textfield = Ext.ComponentQuery.query('textfield[reference=year_input]')[0];
@@ -65,7 +65,7 @@ export const grid = Ext.create('Ext.grid.Panel', {
         }
     }, {
         xtype: 'button',
-        text: 'vor',
+        text: translation.subAccountBtnNext,
         listeners: {
             click: function(el){
                 let textfield = Ext.ComponentQuery.query('textfield[reference=year_input]')[0];
@@ -75,7 +75,7 @@ export const grid = Ext.create('Ext.grid.Panel', {
         }
     }],
     columns: [{
-        text: 'Buchungstag',
+        text: translation.subAccountGridColValuta,
         dataIndex: 'valuta_date',
         xtype: 'datecolumn',
         format: 'd.m.Y',
@@ -85,21 +85,21 @@ export const grid = Ext.create('Ext.grid.Panel', {
         menuDisabled: false,
         width: 150
     }, {
-        header: 'Booking',
+        header: translation.subAccountGridColBooking,
         dataIndex: 'booking_text',
         sortable: false,
         hideable: false,
         groupable: false,
         width: 150
     }, {
-        header: 'Description',
+        header: translation.subAccountGridColDescription,
         dataIndex: 'description_raw',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'Betrag',
+        header: translation.subAccountGridColAmount,
         dataIndex: 'amount',
         sortable: false,
         hideable: false,
@@ -114,7 +114,7 @@ export const grid = Ext.create('Ext.grid.Panel', {
                 return '<span class="negativ">-'+Ext.util.Format.number(value, '0,000.00')+' €</span>';
             }
 
-            return Ext.util.Format.number(v, '0,000.00')+' €';
+            return Ext.util.Format.number(value, '0,000.00')+' €';
         }
     }]
 });

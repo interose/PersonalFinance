@@ -1,0 +1,8 @@
+<script src="{{ asset('build/ext/ext-all.js') }}"></script>
+{% if locale == 'en' %}
+    <script src="{{ asset('build/ext/locale-en.js') }}"></script>
+{% elseif locale == 'de' %}
+    <script src="{{ asset('build/ext/locale-de.js') }}"></script>
+{% endif %}
+
+<script src="{{ asset('build/ext/theme-crisp.js') }}"></script>

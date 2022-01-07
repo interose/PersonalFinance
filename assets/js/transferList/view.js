@@ -3,7 +3,7 @@ export const grid = Ext.create('Ext.grid.Panel', {
     store: Ext.data.StoreManager.lookup('TransferStore'),
     minHeight: 500,
     columns: [{
-        header: 'Datum',
+        header: translation.transferGridColDate,
         dataIndex: 'executionDate',
         xtype: 'datecolumn',
         format: 'd.m.Y',
@@ -12,7 +12,7 @@ export const grid = Ext.create('Ext.grid.Panel', {
         groupable: false,
         width: 100
     }, {
-        header: 'Betrag',
+        header: translation.transferGridColAmount,
         dataIndex: 'amount',
         sortable: false,
         hideable: false,
@@ -23,28 +23,28 @@ export const grid = Ext.create('Ext.grid.Panel', {
             return Ext.util.Format.number(value, '0,000.00')+' €';
         }
     }, {
-        header: 'Name',
+        header: translation.transferGridColName,
         dataIndex: 'name',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'Info',
+        header: translation.transferGridColInfo,
         dataIndex: 'info',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'Bank',
+        header: translation.transferGridColBank,
         dataIndex: 'bankName',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'IBAN',
+        header: translation.transferGridColIban,
         dataIndex: 'iban',
         sortable: false,
         hideable: false,

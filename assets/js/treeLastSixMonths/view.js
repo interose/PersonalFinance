@@ -19,7 +19,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
     },
     columns: [{
         xtype: 'treecolumn',
-        text: 'Kategorie',
+        text: translation.treeGridColCategory,
         dataIndex: 'name',
         menuDisabled: true,
         sortable: false,

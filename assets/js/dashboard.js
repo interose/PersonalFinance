@@ -82,7 +82,7 @@ import * as ModalHandler from "./_modalHandler";
             data: {
                 labels: categories,
                 datasets: [{
-                    label: 'Vormonat',
+                    label: translation.dashboardPreviousMonth,
                     data: seriesPreviousMonth,
                     borderWidth: 3,
                     pointRadius: 0,
@@ -92,7 +92,7 @@ import * as ModalHandler from "./_modalHandler";
                     borderColor: '#58508d',
                     backgroundColor: '#58508d'
                 }, {
-                    label: 'Aktueller Monat',
+                    label: translation.dashboardCurrentMonth,
                     data: seriesCurrentMonth,
                     borderWidth: 3,
                     pointRadius: 0,

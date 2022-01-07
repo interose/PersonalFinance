@@ -35,7 +35,7 @@ export default function initTransferHandler() {
             .then(handleFetchErrors)
             .then((res) => res.text())
             .then((text) => {
-                ModalHandler.showDefaultModal(newTransferModalTitle, text);
+                ModalHandler.showDefaultModal(translation.newTransferModalTitle, text);
                 initNewTransferListeners();
                 removeLoadingOverlay();
             })

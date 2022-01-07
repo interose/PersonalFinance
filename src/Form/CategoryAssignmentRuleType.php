@@ -20,7 +20,7 @@ class CategoryAssignmentRuleType extends AbstractType
                 'label' => 'Rule',
             ])
             ->add('type', ChoiceType::class, [
-                'label' => 'Ruletype',
+                'label' => 'Type',
                 'choices' => CategoryAssignmentRule::AVAILABLE_TYPE_CHOICES,
                 'multiple' => false,
                 'expanded' => false,
@@ -28,7 +28,7 @@ class CategoryAssignmentRuleType extends AbstractType
                 'required' => true,
             ])
             ->add('transactionField', ChoiceType::class, [
-                'label' => 'Transactionfield',
+                'label' => 'Transaction field',
                 'choices' => CategoryAssignmentRule::AVAILABLE_TRANSACTION_FIELD_CHOICE,
                 'multiple' => false,
                 'expanded' => false,

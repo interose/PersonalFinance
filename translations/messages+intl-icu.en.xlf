@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="TWxKC4A" resname="main_account">
+        <source>main_account</source>
+        <target>Main Account</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4B" resname="salary_categories">
+        <source>salary_categories</source>
+        <target>Salary categories</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4C" resname="savings_categories">
+        <source>savings_categories</source>
+        <target>Savings categories</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4E" resname="luxury_categories">
+        <source>luxury_categories</source>
+        <target>Luxury categories</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -14,6 +14,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Contracts\Translation\TranslatableInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SettingsHandler
 {
@@ -35,18 +37,12 @@ class SettingsHandler
         self::SETTING_LUXURY_CATEGORIES,
     ];
 
-    const FORM_LABELS = [
-        self::SETTING_MAIN_ACCOUNT => 'Girokonto',
-        self::SETTING_SALARY_CATEGORIES => 'Einkommenskategorien',
-        self::SETTING_SAVINGS_CATEGORIES => 'Sparkategorien',
-        self::SETTING_LUXURY_CATEGORIES => 'Luxuskategorien',
-    ];
-
     private SettingsRepository $settingsRepository;
     private SubAccountRepository $subAccountRepository;
     private CategoryRepository $categoryRepository;
     private EntityManagerInterface $em;
     private FormFactoryInterface $formFactory;
+    private TranslatorInterface $translator;
 
     /**
      * @param SettingsRepository     $settingsRepository
@@ -54,14 +50,16 @@ class SettingsHandler
      * @param CategoryRepository     $categoryRepository
      * @param EntityManagerInterface $em
      * @param FormFactoryInterface   $formFactory
+     * @param TranslatorInterface    $translator
      */
-    public function __construct(SettingsRepository $settingsRepository, SubAccountRepository $subAccountRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em, FormFactoryInterface $formFactory)
+    public function __construct(SettingsRepository $settingsRepository, SubAccountRepository $subAccountRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em, FormFactoryInterface $formFactory, TranslatorInterface $translator)
     {
         $this->settingsRepository = $settingsRepository;
         $this->subAccountRepository = $subAccountRepository;
         $this->categoryRepository = $categoryRepository;
         $this->em = $em;
         $this->formFactory = $formFactory;
+        $this->translator = $translator;
     }
 
     /**
@@ -74,7 +72,7 @@ class SettingsHandler
         $formBuilder = $this->formFactory->createBuilder(FormType::class, $data);
 
         $formBuilder->add(self::SETTING_MAIN_ACCOUNT, EntityType::class, [
-                'label' => self::FORM_LABELS[self::SETTING_MAIN_ACCOUNT] ?? '',
+                'label' => $this->translator->trans(self::SETTING_MAIN_ACCOUNT, [], 'messages+intl-icu'),
                 'required' => true,
                 'class' => SubAccount::class,
                 'placeholder' => 'Please select an account',
@@ -87,7 +85,7 @@ class SettingsHandler
 
         foreach (self::CATEGORY_SETTINGS as $categorySetting) {
             $formBuilder->add($categorySetting, EntityType::class, [
-                'label' => self::FORM_LABELS[$categorySetting] ?? '',
+                'label' => $this->translator->trans($categorySetting, [], 'messages+intl-icu'),
                 'required' => true,
                 'class' => Category::class,
                 'choice_label' => function (Category $category) {

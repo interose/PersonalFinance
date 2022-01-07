@@ -3,24 +3,24 @@ export const grid = Ext.create('Ext.grid.Panel', {
     store: Ext.data.StoreManager.lookup('CategoryStore'),
     minHeight: 500,
     columns: [{
-        header: 'Gruppe',
+        header: translation.settingsColGroup,
         dataIndex: 'groupName',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1,
     }, {
-        header: 'Name',
+        header: translation.settingsColName,
         dataIndex: 'name',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1,
     }, {
+        header: translation.settingsColTreeIgnore,
         sortable: false,
         hideable: false,
         groupable: false,
-        header: 'Tree Ignore',
         dataIndex: 'treeIgnore',
         align: 'center',
         width: 120,
@@ -33,10 +33,10 @@ export const grid = Ext.create('Ext.grid.Panel', {
             }
         }
     }, {
+        header: translation.settingsColDashboardIgnore,
         sortable: false,
         hideable: false,
         groupable: false,
-        header: 'Dashboard Ignore',
         dataIndex: 'dashboardIgnore',
         align: 'center',
         width: 140,

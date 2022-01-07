@@ -4,28 +4,28 @@ export const grid = Ext.create('Ext.grid.Panel', {
     id: 'mainGrid',
     minHeight: 500,
     columns: [{
-        header: 'Rule',
+        header: translation.settingsColRule,
         dataIndex: 'rule',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'Type',
+        header: translation.settingsColType,
         dataIndex: 'type',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'Transaction Field',
+        header: translation.settingsColTransactionField,
         dataIndex: 'transactionField',
         sortable: false,
         hideable: false,
         groupable: false,
         flex: 1
     }, {
-        header: 'Kategorie',
+        header: translation.settingsColCategory,
         dataIndex: 'category',
         sortable: false,
         hideable: false,

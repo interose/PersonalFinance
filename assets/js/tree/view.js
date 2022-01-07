@@ -12,7 +12,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
     },
     tbar: [{
         xtype: 'button',
-        text: 'zurück',
+        text: translation.treeGridBtnBack,
         listeners: {
             click: function(el){
                 const field = Ext.ComponentQuery.query('#yearField')[0];
@@ -21,7 +21,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
                 field.setValue(year);
 
                 const tree = el.up('treepanel');
-                tree.setLoading('Laden');
+                tree.setLoading();
                 tree.store.load({
                     scope: this,
                     callback: function() {
@@ -44,7 +44,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
         }
     }, {
         xtype: 'button',
-        text: 'vor',
+        text: translation.treeGridBtnNext,
         listeners: {
             click: function(el){
                 const field = Ext.ComponentQuery.query('#yearField')[0];
@@ -53,7 +53,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
                 field.setValue(year);
 
                 const tree = el.up('treepanel');
-                tree.setLoading('Laden');
+                tree.setLoading();
                 tree.store.load({
                     scope: this,
                     callback: function() {
@@ -75,7 +75,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
     },
     columns: [{
         xtype: 'treecolumn',
-        text: 'Kategorie',
+        text: translation.treeGridColCategory,
         dataIndex: 'name',
         menuDisabled: true,
         sortable: false,

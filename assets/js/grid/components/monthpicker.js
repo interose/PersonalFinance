@@ -1,5 +1,3 @@
-Ext.Date.monthNames = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-Ext.Date.monthNumbers = {Januar: 0, Jan: 0, Februar: 1, Feb: 1, März: 2, Mär: 2, April: 3, Apr: 3, Mai: 4, Mai: 4 , Juni: 5, Jun: 5, Juli: 6, Jul: 6, August: 7, Aug: 7, September: 8, Sep: 8, Oktober: 9, Okt: 9, November: 10, Nov: 10, Dezember: 11, Dez: 11};
 Ext.define('extFinance.view.main.Monthfield', {
     extend:'Ext.form.field.Date',
     alias: 'widget.monthfield',
@@ -65,10 +63,6 @@ Ext.define('extFinance.view.main.Monthfield', {
     },
     onSelect: function(m, d) {
         var me = this;
-
-        console.log(m);
-        console.log(d);
-
         me.selectMonth = new Date(( d[0]+1 ) +'/1/'+d[1]);
         me.setValue(new Date(( d[0]+1 ) +'/1/'+d[1]));
     }

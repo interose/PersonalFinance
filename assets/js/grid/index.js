@@ -1,13 +1,16 @@
 import '../../css/grid.css';
 
-import './model';
-import './store';
-
-import {grid} from './view.js';
+import defineModels from './model';
+import defineStores from './store';
+import createView from './view.js';
 
 Ext.scopeCss = true;
 
 Ext.onReady(function() {
+    defineModels();
+    defineStores();
+    const grid = createView();
+
     Ext.create('Ext.container.Container', {
         renderTo: 'ext-container',
         layout: 'fit',

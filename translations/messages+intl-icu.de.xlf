@@ -241,10 +241,6 @@
         <source>Ruletype</source>
         <target>Regeltyp</target>
       </trans-unit>
-      <trans-unit id="ck7qECa" resname="Transactionfield">
-        <source>Transactionfield</source>
-        <target>Transaktion Feld</target>
-      </trans-unit>
       <trans-unit id="SkaeTw9" resname="Please select">
         <source>Please select</source>
         <target>Bitte auswählen</target>
@@ -265,7 +261,7 @@
         <source>Background</source>
         <target>Hintergrund</target>
       </trans-unit>
-      <trans-unit id="6iuKh5h" resname="Foreground">
+      <trans-unit id="rU4kGDT" resname="Foreground">
         <source>Foreground</source>
         <target>Vordergrund</target>
       </trans-unit>
@@ -292,6 +288,82 @@
       <trans-unit id="HqRCoTS" resname="No">
         <source>No</source>
         <target>Nein</target>
+      </trans-unit>
+      <trans-unit id="aidpUCp" resname="Previous month">
+        <source>Previous month</source>
+        <target>Vormonat</target>
+      </trans-unit>
+      <trans-unit id="6PU4Q4T" resname="Current month">
+        <source>Current month</source>
+        <target>Aktueller Monat</target>
+      </trans-unit>
+      <trans-unit id="PEgjRvN" resname="back">
+        <source>back</source>
+        <target>zurück</target>
+      </trans-unit>
+      <trans-unit id="xsHJqch" resname="next">
+        <source>next</source>
+        <target>vor</target>
+      </trans-unit>
+      <trans-unit id="Y44kn0o" resname="Filter">
+        <source>Filter</source>
+        <target>Filtern</target>
+      </trans-unit>
+      <trans-unit id="ulni1KX" resname="Clear filter">
+        <source>Clear filter</source>
+        <target>Filter löschen</target>
+      </trans-unit>
+      <trans-unit id="H9rP_KM" resname="Valuta date">
+        <source>Valuta date</source>
+        <target>Buchungstag</target>
+      </trans-unit>
+      <trans-unit id="mcQKtAW" resname="Date">
+        <source>Date</source>
+        <target>Datum</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="FwMioy8" resname="Info">
+        <source>Info</source>
+        <target>Info</target>
+      </trans-unit>
+      <trans-unit id="lI4D5wV" resname="Booking">
+        <source>Booking</source>
+        <target>Buchungstext</target>
+      </trans-unit>
+      <trans-unit id="GY7Vj66" resname="Tree Ignore">
+        <source>Tree Ignore</source>
+        <target>Tree Ignore</target>
+      </trans-unit>
+      <trans-unit id="vTuVgwe" resname="Dashboard Ignore">
+        <source>Dashboard Ignore</source>
+        <target>Dashboard Ignore</target>
+      </trans-unit>
+      <trans-unit id="uq3fcPt" resname="Type">
+        <source>Type</source>
+        <target>Typ</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4D" resname="Transaction field">
+        <source>Transaction field</source>
+        <target>Transaktionsfeld</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4A" resname="main_account">
+        <source>main_account</source>
+        <target>Girokonto</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4B" resname="salary_categories">
+        <source>salary_categories</source>
+        <target>Einkommenskategorien</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4C" resname="savings_categories">
+        <source>savings_categories</source>
+        <target>Sparkategorien</target>
+      </trans-unit>
+      <trans-unit id="TWxKC4E" resname="luxury_categories">
+        <source>luxury_categories</source>
+        <target>Luxuskategorien</target>
       </trans-unit>
     </body>
   </file>

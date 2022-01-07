@@ -385,6 +385,26 @@
         <source>Each element of this collection should satisfy its own set of constraints.</source>
         <target>Jedes Element dieser Sammlung sollte seine eigene Menge an Bedingungen erfüllen.</target>
       </trans-unit>
+      <trans-unit id="lrbaa8g" resname="This value is not a valid International Securities Identification Number (ISIN).">
+        <source>This value is not a valid International Securities Identification Number (ISIN).</source>
+        <target>Dieser Wert ist keine gültige Internationale Wertpapierkennnummer (ISIN).</target>
+      </trans-unit>
+      <trans-unit id="6akW5mb" resname="This value should be a valid expression.">
+        <source>This value should be a valid expression.</source>
+        <target>Dieser Wert sollte eine gültige Expression sein.</target>
+      </trans-unit>
+      <trans-unit id="CQ0wfFa" resname="This value is not a valid CSS color.">
+        <source>This value is not a valid CSS color.</source>
+        <target>Dieser Wert ist keine gültige CSS-Farbe.</target>
+      </trans-unit>
+      <trans-unit id="GAaG0KN" resname="This value is not a valid CIDR notation.">
+        <source>This value is not a valid CIDR notation.</source>
+        <target>Dieser Wert entspricht nicht der CIDR-Notation.</target>
+      </trans-unit>
+      <trans-unit id="ddJy.XP" resname="The value of the netmask should be between {{ min }} and {{ max }}.">
+        <source>The value of the netmask should be between {{ min }} and {{ max }}.</source>
+        <target>Der Wert der Subnetzmaske sollte zwischen {{ min }} und {{ max }} liegen.</target>
+      </trans-unit>
       <trans-unit id=".SEaaBa" resname="This form should not contain extra fields.">
         <source>This form should not contain extra fields.</source>
         <target>Dieses Formular sollte keine zusätzlichen Felder enthalten.</target>
@@ -400,6 +420,122 @@
       <trans-unit id="eo1zeih" resname="This value is not a valid HTML5 color.">
         <source>This value is not a valid HTML5 color.</source>
         <target>Dieser Wert ist keine gültige HTML5 Farbe.</target>
+      </trans-unit>
+      <trans-unit id="dN.ZVc0" resname="Please enter a valid birthdate.">
+        <source>Please enter a valid birthdate.</source>
+        <target>Bitte geben Sie ein gültiges Geburtsdatum ein.</target>
+      </trans-unit>
+      <trans-unit id="OPymPfZ" resname="The selected choice is invalid.">
+        <source>The selected choice is invalid.</source>
+        <target>Die Auswahl ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="GUH6TYE" resname="The collection is invalid.">
+        <source>The collection is invalid.</source>
+        <target>Diese Gruppe von Feldern ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="14il0ha" resname="Please select a valid color.">
+        <source>Please select a valid color.</source>
+        <target>Bitte geben Sie eine gültige Farbe ein.</target>
+      </trans-unit>
+      <trans-unit id="4AJRUCC" resname="Please select a valid country.">
+        <source>Please select a valid country.</source>
+        <target>Bitte wählen Sie ein gültiges Land aus.</target>
+      </trans-unit>
+      <trans-unit id="xAI5mrh" resname="Please select a valid currency.">
+        <source>Please select a valid currency.</source>
+        <target>Bitte wählen Sie eine gültige Währung aus.</target>
+      </trans-unit>
+      <trans-unit id="c6v9ASZ" resname="Please choose a valid date interval.">
+        <source>Please choose a valid date interval.</source>
+        <target>Bitte wählen Sie ein gültiges Datumsintervall.</target>
+      </trans-unit>
+      <trans-unit id="2BR60Jg" resname="Please enter a valid date and time.">
+        <source>Please enter a valid date and time.</source>
+        <target>Bitte geben Sie ein gültiges Datum samt Uhrzeit ein.</target>
+      </trans-unit>
+      <trans-unit id="ofLBhv0" resname="Please enter a valid date.">
+        <source>Please enter a valid date.</source>
+        <target>Bitte geben Sie ein gültiges Datum ein.</target>
+      </trans-unit>
+      <trans-unit id="Xsmm6Mc" resname="Please select a valid file.">
+        <source>Please select a valid file.</source>
+        <target>Bitte wählen Sie eine gültige Datei.</target>
+      </trans-unit>
+      <trans-unit id="Fka0cZD" resname="The hidden field is invalid.">
+        <source>The hidden field is invalid.</source>
+        <target>Das versteckte Feld ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="69ux5Ml" resname="Please enter an integer.">
+        <source>Please enter an integer.</source>
+        <target>Bitte geben Sie eine ganze Zahl ein.</target>
+      </trans-unit>
+      <trans-unit id="TQbat_9" resname="Please select a valid language.">
+        <source>Please select a valid language.</source>
+        <target>Bitte wählen Sie eine gültige Sprache.</target>
+      </trans-unit>
+      <trans-unit id="vpa7l8w" resname="Please select a valid locale.">
+        <source>Please select a valid locale.</source>
+        <target>Bitte wählen Sie eine gültige Locale-Einstellung aus.</target>
+      </trans-unit>
+      <trans-unit id="Gz8pWER" resname="Please enter a valid money amount.">
+        <source>Please enter a valid money amount.</source>
+        <target>Bitte geben Sie einen gültigen Geldbetrag ein.</target>
+      </trans-unit>
+      <trans-unit id="PRxiOhB" resname="Please enter a number.">
+        <source>Please enter a number.</source>
+        <target>Bitte geben Sie eine gültige Zahl ein.</target>
+      </trans-unit>
+      <trans-unit id="seAdKJo" resname="The password is invalid.">
+        <source>The password is invalid.</source>
+        <target>Das Kennwort ist ungültig.</target>
+      </trans-unit>
+      <trans-unit id="A5k0Q20" resname="Please enter a percentage value.">
+        <source>Please enter a percentage value.</source>
+        <target>Bitte geben Sie einen gültigen Prozentwert ein.</target>
+      </trans-unit>
+      <trans-unit id="rH6V.WA" resname="The values do not match.">
+        <source>The values do not match.</source>
+        <target>Die Werte stimmen nicht überein.</target>
+      </trans-unit>
+      <trans-unit id="Eopl1Sm" resname="Please enter a valid time.">
+        <source>Please enter a valid time.</source>
+        <target>Bitte geben Sie eine gültige Uhrzeit ein.</target>
+      </trans-unit>
+      <trans-unit id="ll14Sm9" resname="Please select a valid timezone.">
+        <source>Please select a valid timezone.</source>
+        <target>Bitte wählen Sie eine gültige Zeitzone.</target>
+      </trans-unit>
+      <trans-unit id="1xP1kmd" resname="Please enter a valid URL.">
+        <source>Please enter a valid URL.</source>
+        <target>Bitte geben Sie eine gültige URL ein.</target>
+      </trans-unit>
+      <trans-unit id="iMmAsrC" resname="Please enter a valid search term.">
+        <source>Please enter a valid search term.</source>
+        <target>Bitte geben Sie einen gültigen Suchbegriff ein.</target>
+      </trans-unit>
+      <trans-unit id="GRMTXRX" resname="Please provide a valid phone number.">
+        <source>Please provide a valid phone number.</source>
+        <target>Bitte geben Sie eine gültige Telefonnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="WkYuMDd" resname="The checkbox has an invalid value.">
+        <source>The checkbox has an invalid value.</source>
+        <target>Das Kontrollkästchen hat einen ungültigen Wert.</target>
+      </trans-unit>
+      <trans-unit id="lY5Mzyl" resname="Please enter a valid email address.">
+        <source>Please enter a valid email address.</source>
+        <target>Bitte geben Sie eine gültige E-Mail-Adresse ein.</target>
+      </trans-unit>
+      <trans-unit id="TzSC4.o" resname="Please select a valid option.">
+        <source>Please select a valid option.</source>
+        <target>Bitte wählen Sie eine gültige Option.</target>
+      </trans-unit>
+      <trans-unit id="qGRcTk7" resname="Please select a valid range.">
+        <source>Please select a valid range.</source>
+        <target>Bitte wählen Sie einen gültigen Bereich.</target>
+      </trans-unit>
+      <trans-unit id="PU.w6nC" resname="Please enter a valid week.">
+        <source>Please enter a valid week.</source>
+        <target>Bitte geben Sie eine gültige Woche ein.</target>
       </trans-unit>
     </body>
   </file>

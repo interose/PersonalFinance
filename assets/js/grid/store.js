@@ -1,3 +1,5 @@
+export default function defineStores() {
+
 Ext.create('Ext.data.Store', {
     extend: 'Ext.data.Store',
     model: 'modelGridByMonth',
@@ -96,3 +98,5 @@ Ext.create('Ext.data.Store', {
         },
     },
 });
+
+}

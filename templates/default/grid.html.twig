@@ -21,9 +21,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('build/ext/ext-all.js') }}"></script>
-    <script src="{{ asset('build/ext/ext-locale-de.js') }}"></script>
-    <script src="{{ asset('build/ext/theme-crisp.js') }}"></script>
-
+    {% include 'parts/extJsAssets.html.twig' %}
     {{ encore_entry_script_tags('grid') }}
 {% endblock %}
