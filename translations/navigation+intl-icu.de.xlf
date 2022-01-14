@@ -53,6 +53,10 @@
         <source>Settings</source>
         <target>Einstellungen</target>
       </trans-unit>
+      <trans-unit id="q4pPa7h" resname="PayPal">
+        <source>PayPal</source>
+        <target>PayPal</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

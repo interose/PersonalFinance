@@ -43,6 +43,7 @@ Encore
     .addEntry('settingsAccountEditSubaccount', './assets/js/settingsAccount/editSubaccount.js')
     .addEntry('settingsGui', './assets/js/settingsGui/index.js')
     .addEntry('chart', './assets/js/chart.js')
+    .addEntry('paypal', './assets/js/paypal/index.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     // .enableStimulusBridge('./assets/controllers.json')

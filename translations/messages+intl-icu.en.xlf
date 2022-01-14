@@ -5,21 +5,45 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="TWxKC4A" resname="main_account">
+      <trans-unit id="BxxY6hG" resname="main_account">
         <source>main_account</source>
         <target>Main Account</target>
       </trans-unit>
-      <trans-unit id="TWxKC4B" resname="salary_categories">
+      <trans-unit id="3Kiengo" resname="salary_categories">
         <source>salary_categories</source>
         <target>Salary categories</target>
       </trans-unit>
-      <trans-unit id="TWxKC4C" resname="savings_categories">
+      <trans-unit id="8Iz2z2t" resname="savings_categories">
         <source>savings_categories</source>
         <target>Savings categories</target>
       </trans-unit>
-      <trans-unit id="TWxKC4E" resname="luxury_categories">
+      <trans-unit id="TGniOrp" resname="luxury_categories">
         <source>luxury_categories</source>
         <target>Luxury categories</target>
+      </trans-unit>
+      <trans-unit id="c10g.KW" resname="num_of_imports">
+        <source>num_of_imports</source>
+        <target>{records, plural, =0 {No transactions imported!} one {One transaction imported!} other {# transactions imported}}</target>
+      </trans-unit>
+      <trans-unit id="cCpn_y0" resname="paypal_import_error_missing_column">
+        <source>paypal_import_error_missing_column</source>
+        <target>Column "{columnName}" is configured as mandatory but could not be found within the CSV! Please check the column names!</target>
+      </trans-unit>
+      <trans-unit id="jEBEZ_E" resname="paypal_import_error_wrong_date_format">
+        <source>paypal_import_error_wrong_date_format</source>
+        <target>Given date "{given_date}" could not be converted into a valid DateTime object! It must be in the format dd.mm.yyyy.</target>
+      </trans-unit>
+      <trans-unit id="Ie.cM03" resname="paypal_import_error_wrong_time_format">
+        <source>paypal_import_error_wrong_time_format</source>
+        <target>Given time "{given_time}" could not be converted into a valid DateTime object! It must be in the format hh:mm:ss.</target>
+      </trans-unit>
+      <trans-unit id="o7vMLyt" resname="paypal_import_error_unavailable_db_column">
+        <source>paypal_import_error_unavailable_db_column</source>
+        <target>Could not find database column "{column}". Please check config!</target>
+      </trans-unit>
+      <trans-unit id="v78P37E" resname="paypal_import_success">
+        <source>paypal_import_success</source>
+        <target><![CDATA[A total of {iOverall} records were processed.<br>{iSkipped} records were ignored because they already existed and {iImported} were imported!]]></target>
       </trans-unit>
     </body>
   </file>

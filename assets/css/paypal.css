@@ -1,0 +1,17 @@
+.dropzone {
+    float: right;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 36px;
+    min-height: 36px;
+    padding: 0;
+    width: 300px;
+    border-radius: 0;
+    border: 3px #222d32 dashed;
+    background-color: #fff;
+}
+.dropzone .dz-message {
+    margin: 0;
+    line-height: 30px; /* height - border */
+}

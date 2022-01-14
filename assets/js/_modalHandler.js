@@ -6,12 +6,12 @@ const loader = document.getElementById('modal_loading');
 export function showErrorModal(response) {
     setErrorStyle();
 
-    let title = 'An error has occurred!';
+    let title = translation.genericErrorTitle;
     if (response.hasOwnProperty('modalTitle')) {
         title = response.modalTitle;
     }
 
-    let body = '<p>Unfortunately, something went wrong!</p>';
+    let body = '<p>'+translation.genericErrorMessage+'</p>';
     if (response.hasOwnProperty('message')) {
         body = `<p>${response.message}</p>`
     }

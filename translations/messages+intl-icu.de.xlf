@@ -349,21 +349,89 @@
         <source>Transaction field</source>
         <target>Transaktionsfeld</target>
       </trans-unit>
-      <trans-unit id="TWxKC4A" resname="main_account">
+      <trans-unit id="BxxY6hG" resname="main_account">
         <source>main_account</source>
         <target>Girokonto</target>
       </trans-unit>
-      <trans-unit id="TWxKC4B" resname="salary_categories">
+      <trans-unit id="3Kiengo" resname="salary_categories">
         <source>salary_categories</source>
         <target>Einkommenskategorien</target>
       </trans-unit>
-      <trans-unit id="TWxKC4C" resname="savings_categories">
+      <trans-unit id="8Iz2z2t" resname="savings_categories">
         <source>savings_categories</source>
         <target>Sparkategorien</target>
       </trans-unit>
-      <trans-unit id="TWxKC4E" resname="luxury_categories">
+      <trans-unit id="TGniOrp" resname="luxury_categories">
         <source>luxury_categories</source>
         <target>Luxuskategorien</target>
+      </trans-unit>
+      <trans-unit id="c10g.KW" resname="num_of_imports">
+        <source>num_of_imports</source>
+        <target>{records, plural, =0 {Keine Transaktion importiert.} one {Eine Transaktion importiert.} other {# Transaktionen importiert.}}</target>
+      </trans-unit>
+      <trans-unit id="MG8pW_K" resname="Only csv files are supported!">
+        <source>Only csv files are supported!</source>
+        <target>__Only csv files are supported!</target>
+      </trans-unit>
+      <trans-unit id="uFaAmCZ" resname="Could not find mandatory fields date, time and amount!">
+        <source>Could not find mandatory fields date, time and amount!</source>
+        <target>__Could not find mandatory fields date, time and amount!</target>
+      </trans-unit>
+      <trans-unit id="q4pPa7h" resname="PayPal">
+        <source>PayPal</source>
+        <target>PayPal</target>
+      </trans-unit>
+      <trans-unit id="tKexMwf" resname="Import successfull!">
+        <source>Import successfull!</source>
+        <target>Import erfolgreich!</target>
+      </trans-unit>
+      <trans-unit id="NGBVpff" resname="Transaction code">
+        <source>Transaction code</source>
+        <target>Transaktionscode</target>
+      </trans-unit>
+      <trans-unit id="NkgJMt0" resname="Article description">
+        <source>Article description</source>
+        <target>Artikelbezeichnung</target>
+      </trans-unit>
+      <trans-unit id="nOsqIUd" resname="Article number">
+        <source>Article number</source>
+        <target>Artikelnummer</target>
+      </trans-unit>
+      <trans-unit id="V0Z79d5" resname="Associated transaction code">
+        <source>Associated transaction code</source>
+        <target>Zugehöriger Transaktionscode</target>
+      </trans-unit>
+      <trans-unit id="hRSfNiJ" resname="Invoice number">
+        <source>Invoice number</source>
+        <target>Rechnungsnummer</target>
+      </trans-unit>
+      <trans-unit id="pmuIpNr" resname="Drop CSV here to upload">
+        <source>Drop CSV here to upload</source>
+        <target>CSV hier zum Hochladen ablegen!</target>
+      </trans-unit>
+      <trans-unit id="cCpn_y0" resname="paypal_import_error_missing_column">
+        <source>paypal_import_error_missing_column</source>
+        <target>Die Spalte mit den Namen "{columnName}" is als Pflichtspalte konfiguriert, wurde allerdings nicht in dem CSV gefunden!</target>
+      </trans-unit>
+      <trans-unit id="jEBEZ_E" resname="paypal_import_error_wrong_date_format">
+        <source>paypal_import_error_wrong_date_format</source>
+        <target>Das Datum "{given_date}" kann nicht in ein gültiges DateTime Objekt konvertiert werden! Es muss in dem Format dd.mm.yyyy vorliegen.</target>
+      </trans-unit>
+      <trans-unit id="Ie.cM03" resname="paypal_import_error_wrong_time_format">
+        <source>paypal_import_error_wrong_time_format</source>
+        <target>Die Uhrzeit "{given_time}" kann nicht in ein gültiges DateTime Objekt konvertiert werden! Es muss in dem Format hh:mm:ss vorliegen.</target>
+      </trans-unit>
+      <trans-unit id="o7vMLyt" resname="paypal_import_error_unavailable_db_column">
+        <source>paypal_import_error_unavailable_db_column</source>
+        <target>Die Datenbankspalte "{column}" wurde nicht gefunden. Bitte die PayPal Import Konfiguration überprüfen!</target>
+      </trans-unit>
+      <trans-unit id="v78P37E" resname="paypal_import_success">
+        <source>paypal_import_success</source>
+        <target><![CDATA[Insgesamt wurden {iOverall} Datensätze bearbeitet.<br>Davon wurden {iSkipped} Datensätze ignoriert da sie schon vorhanden waren und {iImported} importiert!]]></target>
+      </trans-unit>
+      <trans-unit id="_Zmv8kz" resname="Unfortunately, something went wrong!">
+        <source>Unfortunately, something went wrong!</source>
+        <target>Entschuldigung bitte! Etwas ist schief gelaufen!</target>
       </trans-unit>
     </body>
   </file>

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('paypal') }}
+    <link rel="stylesheet" href="{{ asset('build/ext/theme-crisp-all.css') }}" />
+{% endblock %}
+
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>{% trans %}PayPal{% endtrans %}</h1>
+        <div class="dropzone" id="myDropzone">
+            <div class="dz-default dz-message"><button class="dz-button" type="button">{% trans %}Drop CSV here to upload{% endtrans %}</button></div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row"><div class="col-12"><div id="ext-container"></div></div></div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'parts/extJsAssets.html.twig' %}
+    {{ encore_entry_script_tags('paypal') }}
+{% endblock %}

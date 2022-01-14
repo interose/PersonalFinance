@@ -33,6 +33,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('paypal_index') }}" class="nav-link {% if app.request.get('_route') == 'paypal_index' %}active{% endif %}">
+                        <i class="fas fa-paypal"></i> <p>{% trans from 'navigation' %}PayPal{% endtrans %}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('tree_last_six_months_index') }}" class="nav-link {% if app.request.get('_route') == 'tree_last_six_months_index' %}active{% endif %}">
                         <i class="fas fa-stream"></i> <p>{% trans from 'navigation' %}Last 6 months{% endtrans %}</p>
                     </a>
