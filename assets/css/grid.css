@@ -49,3 +49,8 @@ div.x-action-col-icon {
     /*remove that ugly focus border */
     border: none;
 }
+
+/* remove that blue border if the user clicks on a cell */
+.x-grid-item-focused .x-grid-cell-inner::before {
+    border: none !important;
+}
