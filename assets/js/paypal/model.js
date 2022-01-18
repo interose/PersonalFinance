@@ -11,6 +11,21 @@ Ext.define('PayPalTransactionModel', {
         {name: 'article_description', type: 'string'},
         {name: 'article_number', type: 'string'},
         {name: 'associated_transaction_code', type: 'string'},
-        {name: 'invoice_number', type: 'string'}
+        {name: 'invoice_number', type: 'string'},
+        {name: 'already_assigned', type: 'int'}
+    ]
+});
+
+Ext.define('TransactionModel', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'id', type: 'int'},
+        {name: 'valuta_date', type: 'date'},
+        {name: 'name', type: 'string'},
+        {name: 'description', type: 'string'},
+        {name: 'description_raw', type: 'string'},
+        {name: 'amount', type: 'float'},
+        {name: 'booking_text', type: 'string'},
+        {name: 'credit_debit', type: 'string'},
     ]
 });

@@ -92,6 +92,11 @@ class Transaction
      */
     private $subAccount;
 
+    /**
+     * @ORM\OneToOne(targetEntity=PayPalTransaction::class, cascade={"persist", "remove"})
+     */
+    private $PayPalTransaction;
+
     public function __construct()
     {
         $this->splitTransactions = new ArrayCollection();
@@ -285,6 +290,18 @@ class Transaction
     public function setAmount(int $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getPayPalTransaction(): ?PayPalTransaction
+    {
+        return $this->PayPalTransaction;
+    }
+
+    public function setPayPalTransaction(?PayPalTransaction $PayPalTransaction): self
+    {
+        $this->PayPalTransaction = $PayPalTransaction;
 
         return $this;
     }

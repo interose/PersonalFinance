@@ -76,11 +76,17 @@ class GridGenerator
                     }
                 }
 
+                $name = $transaction->getName();
+                $payPalTransaction = $transaction->getPayPalTransaction();
+                if (!is_null($payPalTransaction)) {
+                    $name .= sprintf(' (%s)', $payPalTransaction->getName());
+                }
+
                 $data[] = [
                     'id_transaction' => $transaction->getId(),
                     'id_splittransaction' => 0,
                     'amount' => $transaction->getAmount(),
-                    'name' => $transaction->getName(),
+                    'name' => $name,
                     'description' => $transaction->getDescription(),
                     'description_raw' => $transaction->getDescriptionRaw(),
                     'booking_text' => $transaction->getBookingText(),

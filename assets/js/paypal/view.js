@@ -1,3 +1,5 @@
+import {assignwindow} from './components/assignwindow';
+
 export const grid = Ext.create('Ext.grid.Panel', {
     title: '',
     store: Ext.data.StoreManager.lookup('PayPalTransactionStore'),
@@ -45,6 +47,21 @@ export const grid = Ext.create('Ext.grid.Panel', {
         }
     }],
     columns: [{
+        text: '',
+        dataIndex: 'already_assigned',
+        sortable: false,
+        hideable: false,
+        groupable: false,
+        align: 'center',
+        width: 25,
+        renderer: function(value, metadata, record) {
+            if (parseInt(value) === 1) {
+                return '<i class="fas fa-link"></i>';
+            } else {
+                return '';
+            }
+        }
+    },{
         text: translation.paypalColDate,
         dataIndex: 'booking_date',
         xtype: 'datecolumn',
@@ -126,5 +143,27 @@ export const grid = Ext.create('Ext.grid.Panel', {
                 return '<span class="negativ">'+Ext.util.Format.number(value, '0,000.00')+' €</span>';
             }
         }
-    }]
+    }],
+    listeners: {
+        itemdblclick: function(el, record, item, index, e, eOpts) {
+            const idPayPalTransaction = record.get('id');
+            const alreadyAssigned = parseInt(record.get('already_assigned'));
+
+            if (alreadyAssigned === 1) {
+                return;
+            }
+
+            assignwindow.show();
+            assignwindow.idPayPalTransaction = idPayPalTransaction;
+
+            Ext.getCmp('panelDescription').body.update(record.get('name'));
+            Ext.getCmp('panelAmount').body.update(Ext.util.Format.number(record.get('amount'), '0,000.00')+' €');
+            const store = Ext.data.StoreManager.lookup('TransactionStore');
+            store.load({
+                params: {
+                    idPayPalTransaction: idPayPalTransaction
+                }
+            });
+        }
+    }
 });

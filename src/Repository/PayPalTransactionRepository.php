@@ -29,10 +29,11 @@ class PayPalTransactionRepository extends ServiceEntityRepository
         $connection = $this->getEntityManager()->getConnection();
 
         $sql = <<<SQL
-SELECT id, CONCAT(booking_date,' ',booking_time) AS booking_date, name, type, ROUND(amount / 100, 2) AS amount, recipient, transaction_code, article_description, article_number, associated_transaction_code, invoice_number
-FROM pay_pal_transaction
-WHERE DATE_FORMAT(booking_date, "%Y") = :year
-ORDER BY booking_date DESC
+SELECT pt.id, CONCAT(pt.booking_date,' ',pt.booking_time) AS booking_date, pt.name, pt.type, ROUND(pt.amount / 100, 2) AS amount, pt.recipient, pt.transaction_code, pt.article_description, pt.article_number, pt.associated_transaction_code, pt.invoice_number, CASE WHEN t.id IS NOT NULL THEN 1 ELSE 0 END AS already_assigned
+FROM pay_pal_transaction pt
+LEFT JOIN transaction t ON t.pay_pal_transaction_id = pt.id
+WHERE DATE_FORMAT(pt.booking_date, "%Y") = :year
+ORDER BY pt.booking_date DESC
 SQL;
 
         $stmt = $connection->prepare($sql);

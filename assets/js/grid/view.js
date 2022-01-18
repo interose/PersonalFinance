@@ -1,5 +1,3 @@
-import {splitwindow} from "./components/splitwindow";
-
 export default function createView() {
     defineMonthpicker();
 

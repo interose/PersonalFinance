@@ -371,11 +371,11 @@
       </trans-unit>
       <trans-unit id="MG8pW_K" resname="Only csv files are supported!">
         <source>Only csv files are supported!</source>
-        <target>__Only csv files are supported!</target>
+        <target>Nur CSV Dateien werden unterstützt!</target>
       </trans-unit>
       <trans-unit id="uFaAmCZ" resname="Could not find mandatory fields date, time and amount!">
         <source>Could not find mandatory fields date, time and amount!</source>
-        <target>__Could not find mandatory fields date, time and amount!</target>
+        <target>Die Pflichtfelder date, time und amount können nicht gefunden werden!</target>
       </trans-unit>
       <trans-unit id="q4pPa7h" resname="PayPal">
         <source>PayPal</source>
@@ -432,6 +432,18 @@
       <trans-unit id="_Zmv8kz" resname="Unfortunately, something went wrong!">
         <source>Unfortunately, something went wrong!</source>
         <target>Entschuldigung bitte! Etwas ist schief gelaufen!</target>
+      </trans-unit>
+      <trans-unit id="cf7IvjI" resname="Could not find PayPal transaction for given id (ID = %transaction_id%)">
+        <source>Could not find PayPal transaction for given id (ID = %transaction_id%)</source>
+        <target>PayPal Transaktion mit der id (ID = %transaction_id%) kann nicht gefunden werden!</target>
+      </trans-unit>
+      <trans-unit id="GXZu1sy" resname="Cancel">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+      </trans-unit>
+      <trans-unit id="VlM5vE0" resname="OK">
+        <source>OK</source>
+        <target>OK</target>
       </trans-unit>
     </body>
   </file>

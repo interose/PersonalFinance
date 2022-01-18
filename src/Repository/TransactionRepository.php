@@ -215,6 +215,24 @@ class TransactionRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getPayPalTransactions(\DateTimeInterface $payPalTransactionDate)
+    {
+        $con = $this->getEntityManager()->getConnection();
+        $sql = <<<SQL
+SELECT id, valuta_date, description, ROUND(amount / 100, 2) AS amount
+FROM transaction
+WHERE valuta_date BETWEEN DATE_SUB(:paypalDate, INTERVAL 5 DAY) AND DATE_ADD(:paypalDate, INTERVAL 5 DAY)
+  AND name LIKE 'PayPal%'
+  AND pay_pal_transaction_id IS NULL  
+SQL;
+        $stmt = $con->prepare($sql);
+        $result = $stmt->executeQuery([
+            'paypalDate' => $payPalTransactionDate->format('Y-m-d')
+        ]);
+
+        return $result->fetchAllAssociative();
+    }
+
     /**
      * @param string $sql
      * @param array  $params

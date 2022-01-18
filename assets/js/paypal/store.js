@@ -19,3 +19,21 @@ Ext.create('Ext.data.Store', {
         direction: 'DESC'
     }]
 });
+
+Ext.create('Ext.data.Store', {
+    model: 'TransactionModel',
+    storeId: 'TransactionStore',
+    autoLoad: false,
+    remoteSort: false,
+    remoteFilter: false,
+    autoSync: true,
+    proxy: {
+        type: 'ajax',
+        url: paypal_get_transaction_data,
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+            successProperty: 'success'
+        }
+    }
+});
