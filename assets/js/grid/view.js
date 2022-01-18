@@ -1,7 +1,9 @@
+import {splitwindow} from "./components/splitwindow";
+
 export default function createView() {
     defineMonthpicker();
 
-    const splitWindow = createSplitWindow();
+    const splitwindow = createSplitWindow();
 
     return Ext.create('Ext.grid.Panel', {
         title: '',

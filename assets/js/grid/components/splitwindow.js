@@ -61,7 +61,6 @@ export const splitwindow = Ext.create('Ext.window.Window', {
         listeners: {
             edit: {
                 fn: function(editor, context) {
-
                     let parentWindow = Ext.getCmp('splitWindow');
                     parentWindow.splitAmount = parentWindow.splitAmount - context.record.get('amount');
                     Ext.getCmp('panelAmount').body.update(Ext.util.Format.number(parentWindow.splitAmount, '0,000.00')+' €');
@@ -139,7 +138,7 @@ export const splitwindow = Ext.create('Ext.window.Window', {
             pluginId: 'roweditingId',
             autoCancel: false,
             listeners: {
-                canceledit: function(editor, context, eOpts ){
+                canceledit: function(editor, context, eOpts ) {
                     context.store.remove(context.record);
                     context.store.sync();
                 }
