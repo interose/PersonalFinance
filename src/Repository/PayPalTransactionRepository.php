@@ -21,10 +21,10 @@ class PayPalTransactionRepository extends ServiceEntityRepository
 
     /**
      * @param int $year
-     * @return \mixed[][]
+     * @return array
      * @throws \Doctrine\DBAL\Exception
      */
-    public function getByYear(int $year)
+    public function getByYear(int $year): array
     {
         $connection = $this->getEntityManager()->getConnection();
 
