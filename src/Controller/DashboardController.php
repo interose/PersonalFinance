@@ -93,4 +93,33 @@ class DashboardController extends AbstractController
             'data' => $chartData,
         ]);
     }
+
+    /**
+     * @Route("/dashboard/get-last-month-overview", name="dashboard_get_last_month_overview")
+     *
+     * @param SettingsHandler $settingsHandler
+     * @param SubAccountRepository $subAccountRepository
+     * @param DashboardGenerator $dashboardGenerator
+     *
+     * @return JsonResponse
+     */
+    public function getLastMonthOverview(SettingsHandler $settingsHandler, SubAccountRepository $subAccountRepository, DashboardGenerator $dashboardGenerator): JsonResponse
+    {
+        try {
+            $subAccount = $subAccountRepository->findOneBy(['id' => $settingsHandler->getMainAccount()]);
+            $data = $dashboardGenerator->getLastMonthGroupedSpendings($subAccount);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        } catch (Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+
+        return new JsonResponse(['success' => true, 'labels' => array_keys($data), 'values' => array_values($data)]);
+    }
 }

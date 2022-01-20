@@ -113,6 +113,45 @@ class DashboardGenerator
     }
 
     /**
+     * @param SubAccount $subAccount
+     * @return array
+     * @throws Exception
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function getLastMonthGroupedSpendings(SubAccount $subAccount): array
+    {
+        $start = $this->myDateTime->getToday();
+        $start->setTime(0, 0, 0);
+        $start->modify('first day of last month');
+        $stop = $this->myDateTime->getToday();
+        $stop->setTime(23, 59, 59);
+        $stop->modify('last day of last month');
+
+        $src = $this->transactionRepository->getTransactionsForTreeView($subAccount->getId(), $start, $stop);
+        $data = [];
+
+        foreach ($src as $item) {
+            $amount = floatval($item['amount'] ?? 0);
+            $group = $item['category_group'] ?? '';
+            if (strlen($group) === 0 || is_null($group)) {
+                $group = $item['category'] ?? '';
+            }
+
+            if ($amount > 0) {
+                continue;
+            }
+
+            if (!isset($data[$group])) {
+                $data[$group] = $amount;
+            } else {
+                $data[$group] += $amount;
+            }
+        }
+
+        return $data;
+    }
+
+    /**
      * @param string $settingsCategoryName
      *
      * @return int
