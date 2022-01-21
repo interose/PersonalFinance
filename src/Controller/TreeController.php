@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Lib\GridGenerator;
 use App\Lib\SettingsHandler;
 use App\Lib\TreeGenerator;
+use App\Repository\CategoryGroupRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\SubAccountRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -121,6 +126,49 @@ class TreeController extends AbstractController
             'success' => true,
             'data' => array_values(array_reduce(range(1,12),function($rslt,$m){ $rslt[$m] = date('F',mktime(0,0,0,$m,10)); return $rslt; })),
         ]);
+    }
+
+    /**
+     * @Route("/tree/get-detail-transactions", name="tree_get_detail_transactions")
+     *
+     * @param Request $request
+     * @param GridGenerator $gridGenerator
+     * @param CategoryGroupRepository $groupRepository
+     * @param CategoryRepository $categoryRepository
+     * @param SubAccountRepository $subAccountRepository
+     * @param SettingsHandler $settingsHandler
+     *
+     * @return JsonResponse
+     */
+    public function getDetailTransactionsAction(Request $request, GridGenerator $gridGenerator, CategoryGroupRepository $groupRepository, CategoryRepository $categoryRepository, SubAccountRepository $subAccountRepository, SettingsHandler $settingsHandler): JsonResponse
+    {
+        try {
+            $subAccount = $subAccountRepository->findOneBy(['id' => $settingsHandler->getMainAccount()]);
+            $src = $gridGenerator->getGridData($subAccount, $request->query->getInt('year'), $request->query->getInt('month'));
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+
+        $group = $groupRepository->findOneBy(['name' => $request->query->get('category')]);
+        if ($group) {
+            $ids = array_map(function(Category $category) {
+                return $category->getId();
+            }, $group->getCategories()->toArray());
+        } else {
+            $category = $categoryRepository->findOneBy(['name' => $request->query->get('category')]);
+            if ($category) {
+                $ids = [$category->getId()];
+            }
+        }
+
+        $data = array_filter($src, function ($item) use ($ids) {
+            return in_array(intval($item['category_id']), $ids);
+        });
+
+        return new JsonResponse(['success' => true, 'data' => array_values($data)]);
     }
 
     /**

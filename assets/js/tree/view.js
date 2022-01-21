@@ -1,3 +1,5 @@
+import {detailwindow} from './components/detailwindow';
+
 export const tree = Ext.create('Ext.tree.Panel', {
     rootVisible: false,
     useArrows: true,
@@ -67,6 +69,7 @@ export const tree = Ext.create('Ext.tree.Panel', {
         }
     }],
     viewConfig: {
+        toggleOnDblClick: false,
         getRowClass: function(rec, idx, rowPrms, ds) {
             if (rec.get('name') == 'Gesamt') {
                 return 'summary'
@@ -260,5 +263,25 @@ export const tree = Ext.create('Ext.tree.Panel', {
             }
         },
         flex: 1
-    }]
+    }],
+    listeners: {
+        celldblclick: function(el, td, cellIndex, record, tr, rowIndex, e, eOpts ) {
+            if (!(cellIndex >= 1 && cellIndex <= 12)) {
+                return;
+            }
+
+            const field = Ext.ComponentQuery.query('#yearField')[0];
+
+            detailwindow.show();
+
+            const store = Ext.data.StoreManager.lookup('TransactionStore');
+            store.load({
+                params: {
+                    month: cellIndex,
+                    year: field.getValue(),
+                    category: record.get('name')
+                }
+            });
+        }
+    }
 });

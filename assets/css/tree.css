@@ -1,3 +1,13 @@
+/* amount column styling */
+.positiv {
+    color: #449d44;
+    font-weight: bold;
+}
+.negativ {
+    color: #c9302c;
+    font-weight: bold;
+}
+
 .x-tree-icon {
     display: none !important;
     background-image: none;
@@ -13,3 +23,9 @@ tr.summary.x-grid-tree-node-leaf.x-grid-row, tr.summary {
 tr.summary.x-grid-row td {
     border-top: 1px solid #cfcfcf;
 }
+
+/* remove that blue border if the user clicks on a cell */
+.x-grid-item-focused .x-grid-cell-inner::before {
+    border: none !important;
+}
+

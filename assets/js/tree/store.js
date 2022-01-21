@@ -19,3 +19,25 @@ Ext.create('Ext.data.TreeStore', {
         scope: this
     }
 });
+
+Ext.create('Ext.data.Store', {
+    model: 'TransactionModel',
+    storeId: 'TransactionStore',
+    autoLoad: false,
+    remoteSort: false,
+    remoteFilter: false,
+    autoSync: true,
+    proxy: {
+        type: 'ajax',
+        url: tree_get_detail_transactions,
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+            successProperty: 'success'
+        }
+    },
+    sorters: [{
+        property: 'valuta_date',
+        direction: 'ASC'
+    }]
+});
