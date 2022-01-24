@@ -1,166 +1,124 @@
-import Chart from 'chart.js/auto';
+import Highcharts from 'highcharts';
 import {handleFetchErrors} from "./_common";
 import * as ModalHandler from "./_modalHandler";
+
+const chartHeight = 200;
 
 (function(){
 
     function renderMonthlyRemainingChart(categories, data) {
-        const chart_monthly_remaining = document.getElementById('series_monthly_remaining').getContext('2d');
-        const colours = data.map((value) => value < 0 ? '#910000' : '#8bbc21');
-        const myChart = new Chart(chart_monthly_remaining, {
-            type: 'bar',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: 'test',
-                    data: data,
-                    backgroundColor: colours,
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: 10
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        displayColors: false,
-                        bodyFont: {
-                            size: 14
-                        },
-                        callbacks: {
-                            label: function(context) {
-                                if (context.parsed.y !== null) {
-                                    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(context.parsed.y);
-                                }
-                            },
-                            title(tooltipItems) {
-                                return '';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 11
-                            }
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            callback: function(value, index, values) {
-                                return index % 2 === 0 ? new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(value) : '';
-                            },
-                            font: {
-                                size: 11
-                            }
-                        }
-                    }
+        const config =  {
+            credits: {enabled: false},
+            legend: {enabled: false},
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + Highcharts.numberFormat(this.y, 2, ',', '.') + ' Euro</b>';
                 }
-            }
-        });
+            },
+            title: {
+                text: ''
+            },
+            chart: {
+                type: 'column',
+                height: chartHeight
+            },
+            xAxis: {
+                categories: categories,
+                labels: {
+                    autoRotation: false
+                }
+            },
+            yAxis: {
+                title: false,
+                gridLineWidth: 0,
+                labels: {
+                    enabled: false
+                }
+            },
+            plotOptions: {
+                series: {
+                    groupPadding: 0,
+                }
+            },
+            series: [{
+                data: data,
+                color: '#8bbc21',
+                negativeColor: '#910000',
+                dataLabels: [{
+                    enabled: true,
+                    formatter: function() {
+                        return Highcharts.numberFormat(this.y, 0, ',', '.');
+                    },
+                    style: {
+                        textOutline: 0,
+                        color: '#949494'
+                    }
+                }]
+            }]
+
+        };
+        Highcharts.chart('series_monthly_remaining', config);
     }
 
     function renderAccountProgress(categories, seriesPreviousMonth, seriesCurrentMonth) {
-        const chart_account_progress = document.getElementById('series_account_progress').getContext('2d');
-        const myChart = new Chart(chart_account_progress, {
-            type: 'line',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: translation.dashboardPreviousMonth,
-                    data: seriesPreviousMonth,
-                    borderWidth: 3,
-                    pointRadius: 0,
-                    pointHoverRadius: 2,
-                    tension: 0.3,
-                    fill: false,
-                    borderColor: '#58508d',
-                    backgroundColor: '#58508d'
-                }, {
-                    label: translation.dashboardCurrentMonth,
-                    data: seriesCurrentMonth,
-                    borderWidth: 3,
-                    pointRadius: 0,
-                    pointHoverRadius: 2,
-                    tension: 0.3,
-                    fill: false,
-                    borderColor: '#ffa600',
-                    backgroundColor: '#ffa600'
-                }]
+        const config = {
+            credits: {enabled: false},
+            legend: {enabled: false},
+            title: {
+                text: ''
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: 10
-                },
-                plugins: {
-                    legend: {
-                        display: true
-                    },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                        displayColors: false,
-                        bodyFont: {
-                            size: 14
-                        },
-                        callbacks: {
-                            label: function(context) {
-                                if (context.parsed.y !== null) {
-                                    let value = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(context.parsed.y);
-                                    return context.dataset.label+': '+value;
-                                }
-                            },
-                            title(tooltipItems) {
-                                return '';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 11
-                            }
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            callback: function(value, index, values) {
-                                return index % 2 === 0 ? new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(value) : '';
-                            },
-                            font: {
-                                size: 11
-                            }
-                        }
+            chart: {
+                type: 'spline',
+                height: chartHeight
+            },
+            xAxis: {
+                categories: categories,
+                labels: {
+                    autoRotation: false
+                }
+            },
+            yAxis: {
+                title: false,
+                gridLineWidth: 0,
+                labels: {
+                    formatter: function () {
+                        return Highcharts.numberFormat(this.value, 0, ',', '.') + ' Euro';
                     }
                 }
+            },
+            series: [{
+                data: seriesPreviousMonth,
+                color: '#0d233a',
+                name: 'Vormonat',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle'
+                }
+            }, {
+                data: seriesCurrentMonth,
+                color: '#2f7ed8',
+                name: 'Dieser Monat',
+                marker: {
+                    enabled: false,
+                    symbol: 'circle'
+                }
+            }],
+            tooltip: {
+                shared: true,
+                formatter: function () {
+                    let tooltip = '';
+                    this.points.forEach(function(point) {
+                        tooltip += '<span style="color: '+point.color+'"><b>' + point.series.name + ': '+Highcharts.numberFormat(point.y, 2, ',', '.') + ' Euro</b></span><br>';
+                    });
+
+                    return tooltip;
+                },
+                useHTML: true
             }
-        });
+        };
+
+        Highcharts.chart('series_account_progress', config);
+
     }
 
     fetch(dashboard_get_monthly_remaining)
