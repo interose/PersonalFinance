@@ -95,7 +95,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/get-last-month-overview", name="dashboard_get_last_month_overview")
+     * @Route("/dashboard/get-month-overview", name="dashboard_get_month_overview")
      *
      * @param SettingsHandler $settingsHandler
      * @param SubAccountRepository $subAccountRepository
@@ -103,11 +103,12 @@ class DashboardController extends AbstractController
      *
      * @return JsonResponse
      */
-    public function getLastMonthOverview(SettingsHandler $settingsHandler, SubAccountRepository $subAccountRepository, DashboardGenerator $dashboardGenerator): JsonResponse
+    public function getMonthOverview(SettingsHandler $settingsHandler, SubAccountRepository $subAccountRepository, DashboardGenerator $dashboardGenerator): JsonResponse
     {
         try {
             $subAccount = $subAccountRepository->findOneBy(['id' => $settingsHandler->getMainAccount()]);
-            $data = $dashboardGenerator->getLastMonthGroupedSpendings($subAccount);
+            $dataLastMonth = $dashboardGenerator->getLastMonthGroupedSpendings($subAccount);
+            $dataCurrentMonth = $dashboardGenerator->getCurrentMonthGroupedSpendings($subAccount);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'success' => false,
@@ -120,6 +121,10 @@ class DashboardController extends AbstractController
             ]);
         }
 
-        return new JsonResponse(['success' => true, 'labels' => array_keys($data), 'values' => array_values($data)]);
+        return new JsonResponse([
+            'success' => true,
+            'dataLastMonth' => $dataLastMonth,
+            'dataCurrentMonth' => $dataCurrentMonth,
+        ]);
     }
 }

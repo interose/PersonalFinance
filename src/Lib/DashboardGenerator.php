@@ -127,28 +127,67 @@ class DashboardGenerator
         $stop->setTime(23, 59, 59);
         $stop->modify('last day of last month');
 
-        $src = $this->transactionRepository->getTransactionsForTreeView($subAccount->getId(), $start, $stop);
-        $data = [];
+        return $this->getGroupedTransactions($subAccount, $start, $stop);
+    }
 
-        foreach ($src as $item) {
-            $amount = floatval($item['amount'] ?? 0);
+    /**
+     * @param SubAccount $subAccount
+     * @return array
+     * @throws Exception
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function getCurrentMonthGroupedSpendings(SubAccount $subAccount): array
+    {
+        $start = $this->myDateTime->getToday();
+        $start->setTime(0, 0, 0);
+        $start->modify('first day of this month');
+        $stop = $this->myDateTime->getToday();
+        $stop->setTime(23, 59, 59);
+        $stop->modify('last day of this month');
+
+        return $this->getGroupedTransactions($subAccount, $start, $stop);
+    }
+
+    /**
+     * @param SubAccount $subAccount
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $stop
+     * @return array
+     * @throws Exception
+     * @throws \Doctrine\DBAL\Exception
+     */
+    private function getGroupedTransactions(SubAccount $subAccount, \DateTimeInterface $start, \DateTimeInterface $stop)
+    {
+        $src = $this->transactionRepository->getTransactionsForTreeView($subAccount->getId(), $start, $stop);
+        $grouped = [];
+
+        array_walk($src, function ($item) use (&$grouped) {
             $group = $item['category_group'] ?? '';
             if (strlen($group) === 0 || is_null($group)) {
                 $group = $item['category'] ?? '';
             }
 
+            $amount = floatval($item['amount'] ?? 0);
             if ($amount > 0) {
-                continue;
+                return;
             }
 
-            if (!isset($data[$group])) {
-                $data[$group] = $amount;
+            if (!isset($grouped[$group])) {
+                $grouped[$group] = [
+                    'name' => $group,
+                    'y' => $amount,
+                ];
             } else {
-                $data[$group] += $amount;
+                $grouped[$group]['y'] += $amount;
             }
-        }
+        });
 
-        return $data;
+        return  array_values(array_map(function($item) {
+            return [
+                'name' => $item['name'],
+                'y' => intval(round(abs($item['y'])))
+            ];
+        }, $grouped));
     }
 
     /**
