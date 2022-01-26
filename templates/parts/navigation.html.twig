@@ -52,12 +52,17 @@
                         <i class="fa fa-chart-line"></i> <p>{% trans from 'navigation' %}Chart{% endtrans %}</p>
                     </a>
                 </li>
-                <li class="nav-item {% if app.request.get('_route') in ['settings_category', 'settings_category_edit', 'settings_category_new', 'settings_assignment', 'settings_assignment_edit', 'settings_assignment_new', 'settings_account', 'settings_account_new', 'settings_account_edit', 'settings_account_edit_credentials', 'settings_account_edit_subaccount', 'settings_gui'] %}menu-open{% endif %}" >
+                <li class="nav-item {% if app.request.get('_route') in ['settings_category', 'settings_category_edit', 'settings_category_new', 'settings_assignment', 'settings_assignment_edit', 'settings_assignment_new', 'settings_account', 'settings_account_new', 'settings_account_edit', 'settings_account_edit_credentials', 'settings_account_edit_subaccount', 'settings_gui', 'settings_category_group', 'settings_category_group_edit', 'settings_category_group_new'] %}menu-open{% endif %}" >
                     <a href="#" class="nav-link {% if app.request.get('_route') in ['settings_category', 'settings_category_edit', 'settings_category_new', 'settings_assignment', 'settings_assignment_edit', 'settings_assignment_new', 'settings_account', 'settings_account_new', 'settings_account_edit', 'settings_account_edit_credentials', 'settings_account_edit_subaccount', 'settings_gui'] %}active{% endif %}">
                         <i class="fa fa-cogs"></i>
                         <p>{% trans from 'navigation' %}Settings{% endtrans %} <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('settings_category_group') }}" class="nav-link {% if app.request.get('_route') in ['settings_category_group', 'settings_category_group_edit', 'settings_category_group_new'] %} active{% endif %}">
+                                <i class="fas fa-tags"></i> <p>{% trans from 'navigation' %}Categorygroups{% endtrans %}</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ path('settings_category') }}" class="nav-link {% if app.request.get('_route') in ['settings_category', 'settings_category_edit', 'settings_category_new'] %} active{% endif %}">
                                 <i class="fas fa-tags"></i> <p>{% trans from 'navigation' %}Categories{% endtrans %}</p>

@@ -445,6 +445,22 @@
         <source>OK</source>
         <target>OK</target>
       </trans-unit>
+      <trans-unit id="gcCaTHk" resname="Categorygroup not found!">
+        <source>Categorygroup not found!</source>
+        <target>Kategoriegruppe nicht gefunden!</target>
+      </trans-unit>
+      <trans-unit id="1qxQjT_" resname="Add category group">
+        <source>Add category group</source>
+        <target>Kategoriegruppe hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="x1dzNwI" resname="Edit category group">
+        <source>Edit category group</source>
+        <target>Kategoriegruppe bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="y2dBuJM" resname="Categorygroups">
+        <source>Categorygroups</source>
+        <target>Kategoriegruppen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
