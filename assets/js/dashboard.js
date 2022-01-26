@@ -222,28 +222,16 @@ const piChartHeight = 300;
             ModalHandler.showErrorModal(error);
         });
 
-    fetch(dashboard_get_last_month_overview)
+    fetch(dashboard_get_month_overview)
         .then(handleFetchErrors)
         .then((res) => res.json())
         .then((json) => {
             document.getElementById('series_last_month_overview_loader').remove();
-
-            if (json.success) {
-                renderLastMonthOverview(json.data);
-            }
-        })
-        .catch(function(error) {
-            ModalHandler.showErrorModal(error);
-        });
-
-    fetch(dashboard_get_current_month_overview)
-        .then(handleFetchErrors)
-        .then((res) => res.json())
-        .then((json) => {
             document.getElementById('series_current_month_overview_loader').remove();
 
             if (json.success) {
-                renderCurrentMonthOverview(json.data);
+                renderLastMonthOverview(json.dataLastMonth);
+                renderCurrentMonthOverview(json.dataCurrentMonth);
             }
         })
         .catch(function(error) {
