@@ -3,6 +3,7 @@ import {handleFetchErrors} from "./_common";
 import * as ModalHandler from "./_modalHandler";
 
 const chartHeight = 200;
+const piChartHeight = 300;
 
 (function(){
 
@@ -121,6 +122,78 @@ const chartHeight = 200;
 
     }
 
+    function renderLastMonthOverview(data) {
+        const config = {
+            credits: {enabled: false},
+            legend: {enabled: false},
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        formatter: function() {
+                            return this.point.name + ' ' + this.point.y + ' EUR';
+                        }
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                height: piChartHeight
+            },
+            series: [{
+                name: 'Monthly spendings',
+                data: data
+            }]
+        };
+
+        Highcharts.chart('series_last_month_overview', config);
+    }
+
+    function renderCurrentMonthOverview(data) {
+        const config = {
+            credits: {enabled: false},
+            legend: {enabled: false},
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        formatter: function() {
+                            return this.point.name + ' ' + this.point.y + ' EUR';
+                        }
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                height: piChartHeight
+            },
+            series: [{
+                name: 'Monthly spendings',
+                data: data
+            }]
+        };
+
+        Highcharts.chart('series_current_month_overview', config);
+    }
+
     fetch(dashboard_get_monthly_remaining)
         .then(handleFetchErrors)
         .then((res) => res.json())
@@ -143,6 +216,34 @@ const chartHeight = 200;
 
             if (json.success) {
                 renderAccountProgress(json.categories, json.seriesPreviousMonth, json.seriesCurrentMonth);
+            }
+        })
+        .catch(function(error) {
+            ModalHandler.showErrorModal(error);
+        });
+
+    fetch(dashboard_get_last_month_overview)
+        .then(handleFetchErrors)
+        .then((res) => res.json())
+        .then((json) => {
+            document.getElementById('series_last_month_overview_loader').remove();
+
+            if (json.success) {
+                renderLastMonthOverview(json.data);
+            }
+        })
+        .catch(function(error) {
+            ModalHandler.showErrorModal(error);
+        });
+
+    fetch(dashboard_get_current_month_overview)
+        .then(handleFetchErrors)
+        .then((res) => res.json())
+        .then((json) => {
+            document.getElementById('series_current_month_overview_loader').remove();
+
+            if (json.success) {
+                renderCurrentMonthOverview(json.data);
             }
         })
         .catch(function(error) {
