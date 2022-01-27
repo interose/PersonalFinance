@@ -36,6 +36,8 @@ Encore
     .addEntry('secondaryAccount', './assets/js/secondaryAccount/index.js')
     .addEntry('treeLastSixMonths', './assets/js/treeLastSixMonths/index.js')
     .addEntry('tree', './assets/js/tree/index.js')
+    .addEntry('settingsCategoryGroup', './assets/js/settingsCategoryGroup/index.js')
+    .addEntry('settingsCategoryGroupAdd', './assets/js/settingsCategoryGroup/add.js')
     .addEntry('settingsCategory', './assets/js/settingsCategory/index.js')
     .addEntry('settingsCategoryAdd', './assets/js/settingsCategory/add.js')
     .addEntry('settingsAssignment', './assets/js/settingsAssignment/index.js')

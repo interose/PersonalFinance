@@ -57,6 +57,10 @@
         <source>PayPal</source>
         <target>PayPal</target>
       </trans-unit>
+      <trans-unit id="y2dBuJM" resname="Categorygroups">
+        <source>Categorygroups</source>
+        <target>Kategoriegruppen</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
