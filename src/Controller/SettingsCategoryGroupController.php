@@ -105,6 +105,7 @@ class SettingsCategoryGroupController extends AbstractController
             $data[] = [
                 'id' => $item->getId(),
                 'name' => $item->getName(),
+                'color' => $item->getColor(),
                 'children' => $item->getCategories()->count(),
             ];
         });

@@ -461,6 +461,10 @@
         <source>Categorygroups</source>
         <target>Kategoriegruppen</target>
       </trans-unit>
+      <trans-unit id="a3MZGgp" resname="Color">
+        <source>Color</source>
+        <target>Farbe</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

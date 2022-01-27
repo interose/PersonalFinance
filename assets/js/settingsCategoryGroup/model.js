@@ -3,6 +3,7 @@ Ext.define('CategoryGroupModel', {
     fields: [
         {name: 'id', type: 'int'},
         {name: 'name', type: 'string'},
+        {name: 'color', type: 'string'},
         {name: 'children', type: 'int'}
     ]
 });

@@ -13,6 +13,7 @@ class CategoryGroupType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('color')
         ;
     }
 

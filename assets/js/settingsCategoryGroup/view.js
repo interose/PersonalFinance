@@ -10,6 +10,18 @@ export const grid = Ext.create('Ext.grid.Panel', {
         groupable: false,
         flex: 3,
     }, {
+        header: translation.settingsColColor,
+        dataIndex: 'color',
+        sortable: false,
+        hideable: false,
+        groupable: false,
+        flex: 1,
+        align: 'left',
+        renderer: function (value, meta, record) {
+            console.log(value);
+            return '<div style="width: 20px; height: 14px; background-color: '+value+'"></div>'
+        }
+    }, {
         header: translation.settingsColChildren,
         dataIndex: 'children',
         sortable: false,

@@ -28,6 +28,11 @@ class CategoryGroup
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $color;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -82,6 +87,18 @@ class CategoryGroup
                 $category->setCategoryGroup(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }
