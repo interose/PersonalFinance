@@ -158,7 +158,7 @@ class DashboardGenerator
      */
     private function getGroupedTransactions(SubAccount $subAccount, \DateTimeInterface $start, \DateTimeInterface $stop)
     {
-        $src = $this->transactionRepository->getTransactionsForTreeView($subAccount->getId(), $start, $stop);
+        $src = $this->transactionRepository->getTransactionsForMonthlyOverviewDashboard($subAccount->getId(), $start, $stop);
         $grouped = [];
 
         array_walk($src, function ($item) use (&$grouped) {
@@ -176,6 +176,7 @@ class DashboardGenerator
                 $grouped[$group] = [
                     'name' => $group,
                     'y' => $amount,
+                    'color' => $item['category_color'] ?? '',
                 ];
             } else {
                 $grouped[$group]['y'] += $amount;
@@ -185,6 +186,7 @@ class DashboardGenerator
         return  array_values(array_map(function($item) {
             return [
                 'name' => $item['name'],
+                'color' => $item['color'],
                 'y' => intval(round(abs($item['y'])))
             ];
         }, $grouped));

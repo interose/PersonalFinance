@@ -125,6 +125,29 @@ class TransactionRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int                $subAccountId
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $stop
+     *
+     * @return array<int,array<string,mixed>>
+     *
+     * @throws Exception
+     * @throws \Doctrine\DBAL\Driver\Exception
+     */
+    public function getTransactionsForMonthlyOverviewDashboard(int $subAccountId, \DateTimeInterface $start, \DateTimeInterface $stop): array
+    {
+        $sql = $this->sqlHelper->getSqlForForDashboardMonthOverview();
+
+        $params = [
+            'subaccountid' => $subAccountId,
+            'start' => $start->format('Y-m-d'),
+            'stop' => $stop->format('Y-m-d'),
+        ];
+
+        return $this->executeNativeSqlStatement($sql, $params);
+    }
+
+    /**
      * @param SubAccount         $subAccount
      * @param \DateTimeInterface $start
      * @param \DateTimeInterface $stop
