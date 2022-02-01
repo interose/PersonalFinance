@@ -153,6 +153,7 @@ class TreeController extends AbstractController
         }
 
         $group = $groupRepository->findOneBy(['name' => $request->query->get('category')]);
+        $ids = [];
         if ($group) {
             $ids = array_map(function(Category $category) {
                 return $category->getId();
