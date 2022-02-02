@@ -47,7 +47,17 @@ class ChartController extends AbstractController
     public function getChartDataAction(Request $request, ChartGenerator $chartGenerator, SettingsHandler $settingsHandler): JsonResponse
     {
         $grouping = $request->query->getInt('grouping');
-        $categories = explode(',', $request->query->get('categories'));
+
+        $categories = $request->query->get('categories');
+        if (strlen($categories) === 0) {
+            return new JsonResponse([
+                'success' => true,
+                'data' => [],
+                'labels' => [],
+            ]);
+        }
+
+        $categories = explode(',', $categories);
 
         try {
             list($labels, $data) = $chartGenerator->generateChartSeries($settingsHandler->getMainAccount(), $categories, $grouping);

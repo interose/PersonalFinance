@@ -78,7 +78,7 @@ class ChartGenerator
                     $label = $dataPoint['month_number'];
                 }
 
-                $series[$label][$categoryId] = abs($dataPoint['amount'] ?? 0 / 100);
+                $series[$label][$categoryId] = abs(($dataPoint['amount'] ?? 0 )/ 100);
             }
         }
 
