@@ -9,7 +9,11 @@ Back in 2017 I managed my finances within a spreadsheet. Soon I started the deve
 
 Note/Disclaimer
 ---------------
-This tool is extremely tailored to my needs. It is also a spare time project and there are some open points. E.g. not all items are translated.  
+This tool is extremely tailored to my needs. It is also a spare time project and there are some open points. E.g. not all items are translated.
+
+Highcharts
+----------
+This software uses the charting library from [highcharts](https://www.highcharts.com/). Thanks to the highcharts team, this is really a great library. Easy to use with great flexibility. Please be aware that if you want to use this software commercially, you have to purchase a license. 
 
 A picture is worth a thousand words
 -----------------------------------
