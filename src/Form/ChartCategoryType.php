@@ -2,37 +2,28 @@
 
 namespace App\Form;
 
+use App\Entity\CategoryGroup;
 use App\Entity\Transaction;
-use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChartCategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /** @var CategoryRepository $repository */
-        $repository = $options['categoryRepository'];
-
-        $choices = [];
-        foreach ($repository->getAllWithGroup() as $category) {
-            $groupName = $category['groupName'] ?? '';
-
-            if (strlen($groupName) > 0) {
-                $choices[$groupName][$category['name']] = $category['id'];
-            } else {
-                $choices['Not grouped'][$category['name']] = $category['id'];
-            }
-        }
-
         $builder
-            ->add('category', ChoiceType::class, [
+            ->add('category', EntityType::class, [
+                'class' => CategoryGroup::class,
+                'choice_label' => 'name',
                 'multiple' => true,
                 'required' => true,
-                'choices' => $choices,
-                'placeholder' => 'Choose category',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('g')->orderBy('g.name', 'ASC');
+                },
+                'placeholder' => 'Choose category group',
             ])
             ->add('grouping', ChoiceType::class, [
                 'required' => true,
@@ -43,12 +34,5 @@ class ChartCategoryType extends AbstractType
                 'empty_data' => Transaction::GROUPING_YEARLY,
             ])
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'categoryRepository' => null
-        ]);
     }
 }

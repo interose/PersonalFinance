@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ChartCategoryType;
 use App\Lib\ChartGenerator;
 use App\Lib\SettingsHandler;
+use App\Repository\CategoryGroupRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,15 +21,11 @@ class ChartController extends AbstractController
     /**
      * @Route("/index", name="chart_index")
      *
-     * @param CategoryRepository $repository
-     *
      * @return Response The template
      */
-    public function indexAction(CategoryRepository $repository): Response
+    public function indexAction(): Response
     {
-        $form = $this->createForm(ChartCategoryType::class, null, [
-            'categoryRepository' => $repository,
-        ]);
+        $form = $this->createForm(ChartCategoryType::class);
 
         return $this->render('chart/index.html.twig', [
             'form' => $form->createView(),
@@ -48,8 +45,8 @@ class ChartController extends AbstractController
     {
         $grouping = $request->query->getInt('grouping');
 
-        $categories = $request->query->get('categories');
-        if (strlen($categories) === 0) {
+        $categorieGroups = $request->query->get('categories');
+        if (strlen($categorieGroups) === 0) {
             return new JsonResponse([
                 'success' => true,
                 'data' => [],
@@ -57,10 +54,10 @@ class ChartController extends AbstractController
             ]);
         }
 
-        $categories = explode(',', $categories);
+        $categorieGroups = explode(',', $categorieGroups);
 
         try {
-            list($labels, $data) = $chartGenerator->generateChartSeries($settingsHandler->getMainAccount(), $categories, $grouping);
+            list($labels, $data) = $chartGenerator->generateChartSeries($settingsHandler->getMainAccount(), $categorieGroups, $grouping);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'success' => false,

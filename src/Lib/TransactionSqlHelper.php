@@ -22,12 +22,13 @@ FROM (
            DATE_FORMAT(t.valuta_date, '%b') AS month_name,
            DATE_FORMAT(t.valuta_date, '%Y') AS year_number
     FROM transaction t 
-    LEFT JOIN split_transaction st on t.id = st.transaction_id 
+    LEFT JOIN split_transaction st on t.id = st.transaction_id
+    LEFT JOIN category c ON t.category_id = c.id
     WHERE 
           st.transaction_id IS NULL AND 
           t.sub_account_id = :subaccountid AND
-          t.category_id = :category
-    
+          c.category_group_id = :category_group_id
+
     UNION 
     
     SELECT 
@@ -37,10 +38,11 @@ FROM (
            DATE_FORMAT(st.valuta_date, '%b') AS month_name, 
            DATE_FORMAT(st.valuta_date, '%Y') AS year_number  
     FROM split_transaction st
-    LEFT JOIN transaction t ON st.transaction_id = t.id 
+    LEFT JOIN transaction t ON st.transaction_id = t.id
+    LEFT JOIN category c ON t.category_id = c.id
     WHERE
           t.sub_account_id = :subaccountid AND 
-          st.category_id = :category
+          c.category_group_id = :category_group_id
 ) AS src
 GROUP BY src.month_number, src.month_name
 ORDER BY src.month_number ASC
@@ -63,10 +65,11 @@ FROM (
            DATE_FORMAT(t.valuta_date, '%Y') AS year_number
     FROM transaction t 
     LEFT JOIN split_transaction st on t.id = st.transaction_id 
+    LEFT JOIN category c ON t.category_id = c.id
     WHERE 
           st.transaction_id IS NULL AND 
           t.sub_account_id = :subaccountid AND
-          t.category_id = :category
+          c.category_group_id = :category_group_id
 
     UNION 
 
@@ -78,9 +81,10 @@ FROM (
            DATE_FORMAT(st.valuta_date, '%Y') AS year_number  
     FROM split_transaction st
     LEFT JOIN transaction t ON st.transaction_id = t.id 
+    LEFT JOIN category c ON t.category_id = c.id
     WHERE
           t.sub_account_id = :subaccountid AND 
-          st.category_id = :category
+          c.category_group_id = :category_group_id
 ) AS src
 GROUP BY src.year_number
 ORDER BY src.year_number ASC

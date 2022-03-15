@@ -37,19 +37,19 @@ class TransactionRepository extends ServiceEntityRepository
      * Transactions are grouped by year and filtered by one category
      *
      * @param int $subAccountId
-     * @param int $category
+     * @param int $categoryGroup
      *
      * @return array<int,array<string,mixed>>
      *
      * @throws Exception
      * @throws \Doctrine\DBAL\Driver\Exception
      */
-    public function getTransactionsForYearChart(int $subAccountId, int $category): array
+    public function getTransactionsForYearChart(int $subAccountId, int $categoryGroup): array
     {
         $sql = $this->sqlHelper->getSqlForYearChart();
         $params = [
             'subaccountid' => $subAccountId,
-            'category' => $category,
+            'category_group_id' => $categoryGroup,
         ];
 
         return $this->executeNativeSqlStatement($sql, $params);
@@ -67,12 +67,12 @@ class TransactionRepository extends ServiceEntityRepository
      * @throws Exception
      * @throws \Doctrine\DBAL\Driver\Exception
      */
-    public function getTransactionsForMonthChart(int $subAccountId, int $category): array
+    public function getTransactionsForMonthChart(int $subAccountId, int $categoryGroup): array
     {
         $sql = $this->sqlHelper->getSqlForMonthChart();
         $params = [
             'subaccountid' => $subAccountId,
-            'category' => $category,
+            'category_group_id' => $categoryGroup,
         ];
 
         return $this->executeNativeSqlStatement($sql, $params);
