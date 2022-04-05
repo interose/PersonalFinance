@@ -50,6 +50,19 @@ class CategoryRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getCategoriesByGroupId(int $categoryGroupId)
+    {
+        $connection = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT id, name FROM category WHERE category_group_id = :category_group_id';
+
+        $stmt = $connection->prepare($sql);
+        $result = $stmt->executeQuery([
+            'category_group_id' => $categoryGroupId,
+        ]);
+
+        return $result->fetchAllKeyValue();
+    }
+
     /**
      * @param array $ids
      *

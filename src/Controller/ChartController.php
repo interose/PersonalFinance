@@ -43,21 +43,11 @@ class ChartController extends AbstractController
      */
     public function getChartDataAction(Request $request, ChartGenerator $chartGenerator, SettingsHandler $settingsHandler): JsonResponse
     {
-        $grouping = $request->query->getInt('grouping');
-
-        $categorieGroups = $request->query->get('categories');
-        if (strlen($categorieGroups) === 0) {
-            return new JsonResponse([
-                'success' => true,
-                'data' => [],
-                'labels' => [],
-            ]);
-        }
-
-        $categorieGroups = explode(',', $categorieGroups);
+        $categoryGroupId = $request->query->getInt('categoryGroupId');
+        $splitIntoCategories = $request->query->getBoolean('splitIntoCategories');
 
         try {
-            list($labels, $data) = $chartGenerator->generateChartSeries($settingsHandler->getMainAccount(), $categorieGroups, $grouping);
+            list($labels, $data) = $chartGenerator->generateChartSeries($settingsHandler->getMainAccount(), $categoryGroupId, $splitIntoCategories);
         } catch (\Exception $e) {
             return new JsonResponse([
                 'success' => false,

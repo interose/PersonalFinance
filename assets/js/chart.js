@@ -1,11 +1,17 @@
-import 'select2/dist/css/select2.min.css';
 import 'select2/dist/js/select2.min';
+import 'select2/dist/css/select2.min.css';
+import 'bootstrap-toggle';
+import 'bootstrap-toggle/css/bootstrap-toggle.min.css';
+import '../css/chart.css';
+
 import Highcharts from 'highcharts';
 import * as ModalHandler from "./_modalHandler";
 import {handleFetchErrors} from "./_common";
 
 const dropdownCategory = $('#chart_category_category');
-const dropdownGrouping = $('#chart_category_grouping');
+const checkbox = $('#chart_category_drilldown');
+const checkboxJs = document.getElementById('chart_category_drilldown');
+
 
 Highcharts.setOptions({
     colors: ['#0d233a', '#2f7ed8', '#8bbc21', '#910000', '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'],
@@ -47,27 +53,44 @@ const chart = new Highcharts.Chart({
 });
 
 (function(){
-
     function init() {
         dropdownCategory.select2({
             width: '100%',
-            maximumSelectionLength: 5
+            maximumSelectionLength: 5,
+            minimumResultsForSearch: -1
         });
-        dropdownGrouping.select2({
-            minimumResultsForSearch: Infinity,
+        checkbox.bootstrapToggle({
+            size: 'small',
+            on: translation.toggleYes,
+            off: translation.toggleNo,
+            onstyle: 'my-toggle',
+            width: 60
         });
 
         // Init event listeners
         dropdownCategory.on('select2:select', onSelectChange);
         dropdownCategory.on('select2:unselect', onSelectChange);
-        dropdownGrouping.on('select2:select', onSelectChange);
+        checkbox.on('change', onCheckboxChange);
     }
 
     function onSelectChange(e) {
+        checkboxJs.dataset.handleEvent = 'false';
+        checkbox.bootstrapToggle('off');
+        checkboxJs.dataset.handleEvent = 'true';
+        fetchData();
+    }
+
+    function onCheckboxChange(e) {
+        if (checkboxJs.dataset.handleEvent === "true") {
+            fetchData();
+        }
+    }
+
+    function fetchData() {
         fetch(chart_data + '?' + new URLSearchParams({
-                grouping: dropdownGrouping.val(),
-                categories: dropdownCategory.val().join()
-            }))
+            categoryGroupId: dropdownCategory.val(),
+            splitIntoCategories: checkbox.prop('checked'),
+        }))
             .then(handleFetchErrors)
             .then((res) => res.json())
             .then((json) => {
@@ -78,12 +101,9 @@ const chart = new Highcharts.Chart({
             });
     }
 
-    function renderChart(json)
-    {
-        if (chart.series.length > 0) {
-            for (let i = 0; i <= chart.series.length; i++) {
-                chart.series[0].remove(false);
-            }
+    function renderChart(json) {
+        while (chart.series.length) {
+            chart.series[0].remove();
         }
 
         chart.xAxis[0].setCategories(json.labels, false);

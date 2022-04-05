@@ -37,19 +37,19 @@ class TransactionRepository extends ServiceEntityRepository
      * Transactions are grouped by year and filtered by one category
      *
      * @param int $subAccountId
-     * @param int $categoryGroup
+     * @param int $categoryGroupId
      *
      * @return array<int,array<string,mixed>>
      *
      * @throws Exception
      * @throws \Doctrine\DBAL\Driver\Exception
      */
-    public function getTransactionsForYearChart(int $subAccountId, int $categoryGroup): array
+    public function getTransactionsForYearChartByCategoryGroup(int $subAccountId, int $categoryGroupId): array
     {
-        $sql = $this->sqlHelper->getSqlForYearChart();
+        $sql = $this->sqlHelper->getSqlForYearChartByCategoryGroup();
         $params = [
             'subaccountid' => $subAccountId,
-            'category_group_id' => $categoryGroup,
+            'category_group_id' => $categoryGroupId,
         ];
 
         return $this->executeNativeSqlStatement($sql, $params);
@@ -57,26 +57,50 @@ class TransactionRepository extends ServiceEntityRepository
 
     /**
      * Fetch method for the chart feature.
-     * Transactions are grouped by month and filtered by one category
+     * Transactions are grouped by year and filtered by one category
      *
      * @param int $subAccountId
-     * @param int $category
+     * @param int $categoryId
      *
      * @return array<int,array<string,mixed>>
      *
      * @throws Exception
      * @throws \Doctrine\DBAL\Driver\Exception
      */
-    public function getTransactionsForMonthChart(int $subAccountId, int $categoryGroup): array
+    public function getTransactionsForYearChartByCategory(int $subAccountId, int $categoryId): array
     {
-        $sql = $this->sqlHelper->getSqlForMonthChart();
+        $sql = $this->sqlHelper->getSqlForYearChartByCategory();
         $params = [
             'subaccountid' => $subAccountId,
-            'category_group_id' => $categoryGroup,
+            'category_id' => $categoryId,
         ];
 
         return $this->executeNativeSqlStatement($sql, $params);
     }
+
+//    /**
+//     * Fetch method for the chart feature.
+//     * Transactions are grouped by month and filtered by one category
+//     *
+//     * @param int $subAccountId
+//     * @param int $categoryGroup
+//     * @param int $category
+//     *
+//     * @return array<int,array<string,mixed>>
+//     *
+//     * @throws Exception
+//     * @throws \Doctrine\DBAL\Driver\Exception
+//     */
+//    public function getTransactionsForMonthChart(int $subAccountId, int $categoryGroup = 0, int $category = 0): array
+//    {
+//        $sql = $this->sqlHelper->getSqlForMonthChart();
+//        $params = [
+//            'subaccountid' => $subAccountId,
+//            'category_group_id' => $categoryGroup,
+//        ];
+//
+//        return $this->executeNativeSqlStatement($sql, $params);
+//    }
 
     /**
      * @param int                $subAccountId

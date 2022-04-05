@@ -10,85 +10,21 @@ class TransactionSqlHelper
     /**
      * @return string
      */
-    public function getSqlForMonthChart(): string
+    public function getSqlForYearChartByCategoryGroup(): string
     {
-        return <<<SQL
-SELECT SUM(src.amount) AS amount, src.month_number, src.month_name
-FROM (
-    SELECT
-           t.id,
-           CASE WHEN t.credit_debit = 'credit' THEN t.amount WHEN t.credit_debit = 'debit' THEN t.amount * -1 ELSE t.amount END AS amount,
-           DATE_FORMAT(t.valuta_date, '%Y-%m') AS month_number,
-           DATE_FORMAT(t.valuta_date, '%b') AS month_name,
-           DATE_FORMAT(t.valuta_date, '%Y') AS year_number
-    FROM transaction t 
-    LEFT JOIN split_transaction st on t.id = st.transaction_id
-    LEFT JOIN category c ON t.category_id = c.id
-    WHERE 
-          st.transaction_id IS NULL AND 
-          t.sub_account_id = :subaccountid AND
-          c.category_group_id = :category_group_id
+        $condition = 'c.category_group_id = :category_group_id';
 
-    UNION 
-    
-    SELECT 
-           st.id,
-           CASE WHEN t.credit_debit = 'credit' THEN st.amount WHEN t.credit_debit = 'debit' THEN st.amount * -1 ELSE st.amount END AS amount, 
-           DATE_FORMAT(st.valuta_date, '%Y-%m') AS month_number, 
-           DATE_FORMAT(st.valuta_date, '%b') AS month_name, 
-           DATE_FORMAT(st.valuta_date, '%Y') AS year_number  
-    FROM split_transaction st
-    LEFT JOIN transaction t ON st.transaction_id = t.id
-    LEFT JOIN category c ON t.category_id = c.id
-    WHERE
-          t.sub_account_id = :subaccountid AND 
-          c.category_group_id = :category_group_id
-) AS src
-GROUP BY src.month_number, src.month_name
-ORDER BY src.month_number ASC
-SQL;
+        return $this->getSqlForYearChart($condition);
     }
 
     /**
      * @return string
      */
-    public function getSqlForYearChart(): string
+    public function getSqlForYearChartByCategory(): string
     {
-        return <<<SQL
-SELECT SUM(src.amount) AS amount, src.year_number
-FROM (
-    SELECT
-           t.id,
-           CASE WHEN t.credit_debit = 'credit' THEN t.amount WHEN t.credit_debit = 'debit' THEN t.amount * -1 ELSE t.amount END AS amount,
-           DATE_FORMAT(t.valuta_date, '%Y-%m') AS month_number,
-           DATE_FORMAT(t.valuta_date, '%b') AS month_name,
-           DATE_FORMAT(t.valuta_date, '%Y') AS year_number
-    FROM transaction t 
-    LEFT JOIN split_transaction st on t.id = st.transaction_id 
-    LEFT JOIN category c ON t.category_id = c.id
-    WHERE 
-          st.transaction_id IS NULL AND 
-          t.sub_account_id = :subaccountid AND
-          c.category_group_id = :category_group_id
+        $condition = 't.category_id = :category_id';
 
-    UNION 
-
-    SELECT 
-           st.id,
-           CASE WHEN t.credit_debit = 'credit' THEN st.amount WHEN t.credit_debit = 'debit' THEN st.amount * -1 ELSE st.amount END AS amount, 
-           DATE_FORMAT(st.valuta_date, '%Y-%m') AS month_number, 
-           DATE_FORMAT(st.valuta_date, '%b') AS month_name, 
-           DATE_FORMAT(st.valuta_date, '%Y') AS year_number  
-    FROM split_transaction st
-    LEFT JOIN transaction t ON st.transaction_id = t.id 
-    LEFT JOIN category c ON t.category_id = c.id
-    WHERE
-          t.sub_account_id = :subaccountid AND 
-          c.category_group_id = :category_group_id
-) AS src
-GROUP BY src.year_number
-ORDER BY src.year_number ASC
-SQL;
+        return $this->getSqlForYearChart($condition);
     }
 
     /**
@@ -238,6 +174,50 @@ FROM (
 ) AS src
 GROUP BY src.category, src.category_group, src.category_color
 ORDER BY src.category_group ASC, src.category ASC
+SQL;
+    }
+
+    /**
+     * @param string $condition
+     *
+     * @return string
+     */
+    private function getSqlForYearChart(string $condition): string
+    {
+        return <<<SQL
+SELECT SUM(src.amount) AS amount, src.year_number
+FROM (
+    SELECT
+           t.id,
+           CASE WHEN t.credit_debit = 'credit' THEN t.amount WHEN t.credit_debit = 'debit' THEN t.amount * -1 ELSE t.amount END AS amount,
+           DATE_FORMAT(t.valuta_date, '%Y-%m') AS month_number,
+           DATE_FORMAT(t.valuta_date, '%b') AS month_name,
+           DATE_FORMAT(t.valuta_date, '%Y') AS year_number
+    FROM transaction t 
+    LEFT JOIN split_transaction st on t.id = st.transaction_id 
+    LEFT JOIN category c ON t.category_id = c.id
+    WHERE 
+          st.transaction_id IS NULL AND 
+          t.sub_account_id = :subaccountid AND
+          $condition
+
+    UNION 
+
+    SELECT 
+           st.id,
+           CASE WHEN t.credit_debit = 'credit' THEN st.amount WHEN t.credit_debit = 'debit' THEN st.amount * -1 ELSE st.amount END AS amount, 
+           DATE_FORMAT(st.valuta_date, '%Y-%m') AS month_number, 
+           DATE_FORMAT(st.valuta_date, '%b') AS month_name, 
+           DATE_FORMAT(st.valuta_date, '%Y') AS year_number  
+    FROM split_transaction st
+    LEFT JOIN transaction t ON st.transaction_id = t.id 
+    LEFT JOIN category c ON t.category_id = c.id
+    WHERE
+          t.sub_account_id = :subaccountid AND 
+          $condition
+) AS src
+GROUP BY src.year_number
+ORDER BY src.year_number ASC
 SQL;
     }
 }

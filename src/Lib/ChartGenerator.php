@@ -4,81 +4,86 @@ namespace App\Lib;
 
 use App\Entity\Transaction;
 use App\Repository\CategoryGroupRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\TransactionRepository;
 
 class ChartGenerator
 {
     private TransactionRepository $transactionRepository;
     private CategoryGroupRepository $categoryGroupRepository;
+    private CategoryRepository $categoryRepository;
 
     /**
      * ChartGenerator constructor.
      *
-     * @param TransactionRepository   $transactionRepository
+     * @param TransactionRepository $transactionRepository
      * @param CategoryGroupRepository $categoryGroupRepository
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(TransactionRepository $transactionRepository, CategoryGroupRepository $categoryGroupRepository)
+    public function __construct(TransactionRepository $transactionRepository, CategoryGroupRepository $categoryGroupRepository, CategoryRepository $categoryRepository)
     {
         $this->transactionRepository = $transactionRepository;
         $this->categoryGroupRepository = $categoryGroupRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
-     * @param int   $accountId
-     * @param array $categoryGroups
-     * @param int   $grouping
+     * @param int $accountId
+     * @param int $categoryGroupId
+     * @param bool $splitIntoCategories
      *
      * @return array
      *
      * @throws \Exception
      */
-    public function generateChartSeries(int $accountId, array $categoryGroups, int $grouping = Transaction::GROUPING_YEARLY): array
+    public function generateChartSeries(int $accountId, int $categoryGroupId = 0, bool $splitIntoCategories = false): array
     {
-        if (Transaction::GROUPING_YEARLY !== $grouping && Transaction::GROUPING_MONTHLY !== $grouping) {
-            throw new \Exception(sprintf('Unsupported grouping type: %d', $grouping));
+        if (0 === $categoryGroupId) {
+            return [[], []];
         }
 
-        $series = $this->fetchAndCombine($accountId, $categoryGroups, $grouping);
+        $categoryIds = [];
+        if ($splitIntoCategories) {
+            $categoryIds = array_keys($this->categoryRepository->getCategoriesByGroupId($categoryGroupId));
+            $categoryGroupId = 0;
+        }
+
+        $series = $this->fetchAndCombine($accountId, $categoryGroupId, $categoryIds);
 
         $labels = array_keys($series);
 
-        $this->fillGaps($series, $categoryGroups);
+        $this->fillGaps($series, $categoryGroupId, $categoryIds);
 
         $series = $this->split($series);
-        $series = $this->addCategoryNames($series);
+        $series = $this->addNames($series, $categoryGroupId);
 
         return [$labels, $series];
     }
 
     /**
      * @param int   $accountId
-     * @param array $categoryGroups
-     * @param int   $grouping
+     * @param int   $categoryGroupId
+     * @param array $categoryIds
      *
      * @return array
      *
      * @throws \Exception
      */
-    private function fetchAndCombine(int $accountId, array $categoryGroups, int $grouping): array
+    private function fetchAndCombine(int $accountId, int $categoryGroupId = 0, array $categoryIds = []): array
     {
         $series = [];
 
-        $fetchMethod = 'getTransactionsForMonthChart';
-        if (Transaction::GROUPING_YEARLY === $grouping) {
-            $fetchMethod = 'getTransactionsForYearChart';
-        }
+        $fetchMethod = 'getTransactionsForYearChart';
 
-        foreach ($categoryGroups as $categoryGroupId) {
+        if (0 !== $categoryGroupId) {
+            $fetchMethod .= 'ByCategoryGroup';
             $data = call_user_func_array([$this->transactionRepository, $fetchMethod], [$accountId, $categoryGroupId]);
-
-            foreach ($data as $dataPoint) {
-                if (Transaction::GROUPING_YEARLY === $grouping) {
-                    $label = $dataPoint['year_number'];
-                } else {
-                    $label = $dataPoint['month_number'];
-                }
-
-                $series[$label][$categoryGroupId] = abs(($dataPoint['amount'] ?? 0 )/ 100);
+            $this->combineData($data, $categoryGroupId, $series);
+        } else {
+            $fetchMethod .= 'ByCategory';
+            foreach ($categoryIds as $categoryId) {
+                $data = call_user_func_array([$this->transactionRepository, $fetchMethod], [$accountId, $categoryId]);
+                $this->combineData($data, $categoryId, $series);
             }
         }
 
@@ -86,17 +91,40 @@ class ChartGenerator
     }
 
     /**
+     * @param array $data
+     * @param int $id
      * @param array $series
-     * @param array $categoryGroups
+     *
+     * @return void
      */
-    private function fillGaps(array &$series, array $categoryGroups)
+    private function combineData(array $data, int $id, array &$series)
     {
+        foreach ($data as $dataPoint) {
+            $label = $dataPoint['year_number'];
+
+            $series[$label][$id] = abs(($dataPoint['amount'] ?? 0 )/ 100);
+        }
+    }
+
+    /**
+     * @param array $series
+     * @param int $categoryGroupId
+     * @param array $categoryIds
+     */
+    private function fillGaps(array &$series, int $categoryGroupId = 0, array $categoryIds = [])
+    {
+        if (0 === $categoryGroupId) {
+            $ids = $categoryIds;
+        } else {
+            $ids = [$categoryGroupId];
+        }
+
         foreach ($series as $groupingName => $item) {
             $keys = array_keys($item);
 
-            foreach ($categoryGroups as $categoryGroupId) {
-                if (!in_array($categoryGroupId, $keys)) {
-                    $series[$groupingName][$categoryGroupId] = .0;
+            foreach ($ids as $id) {
+                if (!in_array($id, $keys)) {
+                    $series[$groupingName][$id] = .0;
                 }
             }
         }
@@ -112,8 +140,8 @@ class ChartGenerator
         $series = [];
 
         foreach ($src as $data) {
-            foreach ($data as $categoryName => $amount) {
-                $series[$categoryName][] = $amount;
+            foreach ($data as $id => $amount) {
+                $series[$id][] = $amount;
             }
         }
 
@@ -122,19 +150,25 @@ class ChartGenerator
 
     /**
      * @param array $src
-     *
+     * @param int $categoryGroupId
      * @return array
      */
-    private function addCategoryNames(array $src): array
+    private function addNames(array $src, int $categoryGroupId = 0): array
     {
         $series = [];
 
-        foreach ($src as $categoryGroupId => $data) {
-            $categoryGroupEntity = $this->categoryGroupRepository->findOneBy(['id' => $categoryGroupId]);
+        if (0 === $categoryGroupId) {
+            $repository = $this->categoryRepository;
+        } else {
+            $repository = $this->categoryGroupRepository;
+        }
+
+        foreach ($src as $id => $data) {
+            $entity = $repository->findOneBy(['id' => $id]);
 
             $series[] = [
-                'name' => $categoryGroupEntity->getName(),
-                'id' => $categoryGroupEntity->getId(),
+                'name' => $entity->getName(),
+                'id' => $id,
                 'data' => $data,
             ];
         }

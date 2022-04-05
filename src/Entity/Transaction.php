@@ -12,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Transaction
 {
     const DO_NOT_SHOW = 30;
-    public const GROUPING_YEARLY = 1;
-    public const GROUPING_MONTHLY = 2;
 
     /**
      * @ORM\Id()

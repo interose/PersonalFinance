@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('chart') }}
     {{ parent() }}
+    {{ encore_entry_link_tags('chart') }}
+
 {% endblock %}
 
 
@@ -17,11 +18,14 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                                 {{ form_widget(form.category, {'attr': {'class': 'form-control form-control-sm select2'}}) }}
                             </div>
                             <div class="col-2">
-                                {{ form_widget(form.grouping, {'attr': {'class': 'form-control form-control-sm select2'}}) }}
+                                <div class="form-check">
+                                    <label class="form-check-label required" for="chart_category_drilldown">{% trans %}Show categories{% endtrans %}</label>
+                                    <input type="checkbox" id="chart_category_drilldown" name="chart_category[drilldown]" required="required" class="form-control form-control-sm form-check-input" value="1">
+                                </div>
                             </div>
                         </div>
 
