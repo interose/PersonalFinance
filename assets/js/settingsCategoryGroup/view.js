@@ -18,7 +18,6 @@ export const grid = Ext.create('Ext.grid.Panel', {
         flex: 1,
         align: 'left',
         renderer: function (value, meta, record) {
-            console.log(value);
             return '<div style="width: 20px; height: 14px; background-color: '+value+'"></div>'
         }
     }, {

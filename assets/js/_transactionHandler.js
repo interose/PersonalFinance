@@ -1,4 +1,5 @@
 import * as ModalHandler from "./_modalHandler";
+import * as TransactionModalHandler from "./_transactionModalHandler";
 import {handleFetchErrors, removeLoadingOverlay, showLoadingOverlay} from "./_common";
 
 export default function initTransactionHandler() {
@@ -16,7 +17,6 @@ export default function initTransactionHandler() {
 
     function doRequest(tan) {
         showLoadingOverlay();
-
         const data = new URLSearchParams();
         if (tan.length > 0) {
             data.append('tan', tan);
@@ -43,7 +43,7 @@ export default function initTransactionHandler() {
                         html += `<b>${item.accountName}</b> (${item.accountNumber})<br>Fetched transactions: ${item.transactions}<br>New transactions: ${item.new}<br>Assigned transactions: ${item.assigned}<br><br>`;
                     });
 
-                    ModalHandler.showSuccessModal(json.modalTitle, html);
+                    TransactionModalHandler.showSuccessModal(json.modalTitle, html);
                 }
             })
             .catch(function(error) {

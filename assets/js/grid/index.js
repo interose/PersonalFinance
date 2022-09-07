@@ -23,4 +23,9 @@ Ext.onReady(function() {
     Ext.QuickTips.init();
 
     window.panel = grid;
+
+    window.onTransactionSuccessAndFinished = function() {
+        const picker = Ext.ComponentQuery.query('monthfield')[0];
+        picker.fireEvent('select', picker, picker.selectMonth);
+    }
 });
