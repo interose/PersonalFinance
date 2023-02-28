@@ -31,8 +31,10 @@ class TransferRepository extends ServiceEntityRepository
     public function findByName($queryName): mixed
     {
         return $this->createQueryBuilder('t')
+            ->select('t.name, t.iban, t.bic, t.bankName')
             ->andWhere('t.name LIKE :name')
             ->setParameter('name', '%'.$queryName.'%')
+            ->distinct()
             ->getQuery()
             ->getResult(AbstractQuery::HYDRATE_ARRAY)
         ;

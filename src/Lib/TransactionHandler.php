@@ -147,6 +147,15 @@ class TransactionHandler
     private function saveTransaction(Transaction $transaction, SubAccount $subAccount, Category $category = null)
     {
         $desc = explode('+', $transaction->getDescription1());
+        
+        $name = $transaction->getName();
+        if ($name === 'DEUTSCHE KREDITBANK AG') {
+            $struct = $transaction->getStructuredDescription();
+
+            if (isset($struct['ABWA']) && strlen($struct['ABWA']) > 0) {
+                $name = $struct['ABWA'];
+            }
+        }
 
         $obj = new \App\Entity\Transaction();
         $obj
@@ -159,7 +168,7 @@ class TransactionHandler
             ->setDescriptionRaw($transaction->getDescription1())
             ->setBankCode($transaction->getBankCode())
             ->setAccountNumber($transaction->getAccountNumber())
-            ->setName($transaction->getName())
+            ->setName($name)
             ->setSubAccount($subAccount)
             ->setChecksum($this->generateChecksum($transaction, $subAccount))
         ;
