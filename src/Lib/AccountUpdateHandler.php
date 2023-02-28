@@ -18,7 +18,7 @@ class AccountUpdateHandler
     const RESULT_SESSION_KEY = 'fints_import_result';
     const UPDATE_BALANCE_POSTFIX = '_balance';
     const UPDATE_TRANSACTION_POSTFIX = '_transaction';
-    const UPDATE_DEFAULT_RANGE_IN_DAYS = '10';
+    const UPDATE_DEFAULT_RANGE_IN_DAYS = '30';
 
     /**
      * AccountUpdateHandler constructor.
