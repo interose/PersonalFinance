@@ -115,12 +115,6 @@
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
-    "nemiah/php-fints": {
-        "version": "1.6.0"
-    },
-    "nemiah/php-sepa-xml": {
-        "version": "dev-master"
-    },
     "nikic/php-parser": {
         "version": "v4.2.0"
     },

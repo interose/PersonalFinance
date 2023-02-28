@@ -11,7 +11,7 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
-        "nemiah/php-fints": "3.2",
+        "nemiah/php-fints": "^3.3",
         "nemiah/php-sepa-xml": "dev-master",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.2",
@@ -59,7 +59,12 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true,
+            "phpstan/extension-installer": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -94,6 +99,8 @@
     "conflict": {
         "symfony/symfony": "*"
     },
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
     "extra": {
         "symfony": {
             "allow-contrib": false,
