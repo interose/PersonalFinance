@@ -1,3 +1,9 @@
+![Status](https://img.shields.io/badge/status-deprecated-red)
+![Maintenance](https://img.shields.io/badge/maintained-no-red)
+
+> [!CAUTION]
+> **This repository is deprecated.** Please have a look at [MoneyMate](https://github.com/interose/MoneyMate) instead.
+
 PersonalFinance
 ===============
 
